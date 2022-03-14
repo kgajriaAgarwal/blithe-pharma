@@ -9,7 +9,6 @@ const ProductCard = (props) => {
                 <img src={props.img}
                     className="card-img" alt="card-img"/>
                     <Badge prdctBadge={props.prdctBadge}/>
-                {/* <span className="badge badge-new">{props.prdctBadge}</span> */}
                 <div className="card-content-container">
                     <p className="text-sm card-des">{props.title}</p>
                     <p className='text-xs card-des'>{props.description}</p>

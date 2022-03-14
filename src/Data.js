@@ -278,3 +278,18 @@ export const testimonials = [
         name:'somesh jain'
     },
 ]
+
+export const steps = [
+    {   
+        id:1,
+        title:"Upload the Doctor's Prescription and place order"
+    },
+    {   
+        id:2,
+        title:"Apply coupons or choose emergency delivery"
+    },
+    {   
+        id:3,
+        title :"Get the Products delivered at your home"
+    }
+] 

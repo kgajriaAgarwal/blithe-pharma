@@ -7,8 +7,8 @@
     padding: 1rem 1rem 0;
 }
 
+
 .dis-banner{
-    background: url("https://media.istockphoto.com/vectors/dark-peach-or-carrot-coloured-grunge-celebration-vector-backgrounds-vector-id1278494992?k=20&m=1278494992&s=170667a&w=0&h=_AADyG_fvrjC-hkrbLJyEh1nrH28xBeQluRcKy0v0I8=");
     width:80%;
     height: 90%;
     display: flex;
@@ -16,11 +16,40 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-evenly;
+    padding-left: 10px;
+    color: var(--white-color);
 }
 
-.dis-banner{
+.bg-blue{
+    background-color: blue;
+}
+
+.bg-coral{
+    background-color: coral;
+}
+
+.bg-yellow{
+    background-color: darkgoldenrod;
+}
+
+.bg-lightcoral{
+    background-color: lightcoral;
+}
+
+/* .dis-banner-img{
+    height: 20vh;
+    width: 100%;
+    object-fit: cover;
+} */
+
+/* .dis-banner{
     color: var(--white-color);
     padding-left: 10px;
+} */
+.banner-content{
+    background-color: blue;
+    z-index: 1;
+    width: 100%;
 }
 
 .dis-banner span{

@@ -5,7 +5,8 @@ import Corousel from '../../Shared/Corousel/Corousel';
 import Banner from '../../Shared/Banner/Banner';
 import ProductCard from '../../Shared/ProductCard/ProductCard';
 import Footer from '../../Shared/Footer/Footer';
-import {categories,topCategories, featuredProducts, testimonials} from '../../Data';
+import CategoryCard from '../../Shared/CategoryCard/CategoryCard';
+import {categories,topCategories, featuredProducts, testimonials, steps} from '../../Data';
 import blitheLogo from '../../Assets/Images/Blithe-logo.png';
 
 const LandingPage = () =>{
@@ -20,12 +21,12 @@ const LandingPage = () =>{
             <div className="col-12 category-container">
             {
                 topCategories.length?
-                    topCategories.map(ctgry=>
-                        <button key={ctgry.id} className="button category-item">
+                    topCategories.map(category=>
+                        <button key={category.id} className="button category-item">
                         <img className="category sm"
-                            src={ctgry.img}
-                            alt={ctgry.title} />
-                        <p className='text-sm'>{ctgry.title}</p>
+                            src={category.img}
+                            alt={category.title} />
+                        <p className='text-sm'>{category.title}</p>
                     </button>
                     )
                 :null
@@ -36,18 +37,13 @@ const LandingPage = () =>{
 
             {/* <!-- How site works steps --> */}
             <div className="steps-container">
-                <div className="step-item">
-                    <p className="step">1</p>
-                    <p className="text-lg step-text">Upload the Doctor's Prescription and place order</p>
-                </div>
-                <div className="step-item">
-                    <p className="step">2</p>
-                    <p className="text-lg step-text">Apply coupons or choose emergency delivery</p>
-                </div>
-                <div className="step-item">
-                    <p className="step">3</p>
-                    <p className="text-lg step-text">Get the Products delivered at your home</p>
-                </div>
+                {steps.length?
+                    steps.map(step => 
+                    <div className="step-item" key={step.id}>
+                        <p className="step">{step.id}</p>
+                        <p className="text-lg step-text">{step.title}</p>
+                    </div>)
+                :null}
             </div>
 
             {/* <!-- featured Categories --> */}
@@ -56,18 +52,23 @@ const LandingPage = () =>{
 
                 {categories.length?
                     categories.map((cVal,cIndx) =>
-                    <div key={cIndx} className="card-container card-shadow">
-                    <img src={cVal.img} className="card-img" alt="card-img"/>
-                    <div className="card-content-container">
-                        <p className="text-sm card-des">{cVal.title}</p>
-                        <p className='text-xs card-des'>{cVal.description}</p>
-                        <div className="flex-content">
-                            <a href="../Product_Listing/Product_Listing.html">
-                                <button className="btn card-btn card-btn-text"><span className='text-lg'>Explore More..</span></button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                        <CategoryCard key={cIndx}
+                            img = {cVal.img}
+                            title = {cVal.title}
+                            description = {cVal.description}                           
+                        />
+                    // <div key={cIndx} className="card-container card-shadow">
+                    //     <img src={cVal.img} className="card-img" alt="card-img"/>
+                    //     <div className="card-content-container">
+                    //         <p className="text-sm card-des">{cVal.title}</p>
+                    //         <p className='text-xs card-des'>{cVal.description}</p>
+                    //         <div className="flex-content">
+                    //             <a href="../Product_Listing/Product_Listing.html">
+                    //                 <button className="btn card-btn card-btn-text"><span className='text-lg'>Explore More..</span></button>
+                    //             </a>
+                    //         </div>
+                    //     </div>
+                    // </div>
                     )
                 :null}
 
@@ -105,14 +106,13 @@ const LandingPage = () =>{
                     <div className="col-12 flex-container-row-center reviews-row">
                         {testimonials.length?
                             testimonials.map(testimonial =>
-                                <div key={testimonial.id} class="col-4 text-center">
+                                <div key={testimonial.id} className="col-4 text-center">
                                 <div className="profile">
-                                <img src={testimonial.img?testimonial.img:blitheLogo} class="user"/>
+                                <img src={testimonial.img?testimonial.img:blitheLogo} className="user" alt="user"/>
                                         <blockquote className="text-xs">
                                         {testimonial.review}
                                         </blockquote>
                                         <p className="heading-md profile-name">{testimonial.name}</p>
-                                    {/* </img> */}
                                     </div>
                                 </div>    
                             )
