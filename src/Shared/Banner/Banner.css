@@ -1,0 +1,87 @@
+
+/* <!-- Blithe-plus-banner --> */
+.Blithe-plus-banner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1rem 0;
+}
+
+
+.dis-banner{
+    width:80%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    padding-left: 10px;
+    color: var(--white-color);
+}
+
+.bg-blue{
+    background-color: blue;
+}
+
+.bg-coral{
+    background-color: coral;
+}
+
+.bg-yellow{
+    background-color: darkgoldenrod;
+}
+
+.bg-lightcoral{
+    background-color: lightcoral;
+}
+
+/* .dis-banner-img{
+    height: 20vh;
+    width: 100%;
+    object-fit: cover;
+} */
+
+/* .dis-banner{
+    color: var(--white-color);
+    padding-left: 10px;
+} */
+.banner-content{
+    background-color: blue;
+    z-index: 1;
+    width: 100%;
+}
+
+.dis-banner span{
+    color: var(--darkgreen-color);
+    padding:10px;
+    font-weight: 900;
+}
+
+.banner-img{
+    width:20%;
+    height: 20%;
+}
+
+.banner-img img{
+    width: 50%;
+}
+
+
+@media (max-width:768px){
+    .dis-banner p{
+        font-size: 0.75rem;
+    }
+
+    .dis-banner span{
+        font-size: 1rem;
+    }
+
+    .banner-img{
+        width:40%;
+        height: 50%;
+    }
+    .banner-img img{
+        width: 85%;
+    }
+}
