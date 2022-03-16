@@ -1,0 +1,215 @@
+@import url('../../css/Common.css');
+
+/* for dropdown on header */
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 15rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding-top: 1rem;
+    background-color: var(--white-color);
+  }
+  
+  .dropdown-content a {
+    color: var(--black-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+  }
+  
+.dropdown-content a:hover {background-color: var(--shadow-color);}
+  
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content:hover{
+    display: block;
+}
+
+
+.pl-main-container{
+    background-color: var(--white-color);
+    height:max-content;
+    display: flex;
+    justify-content: center;
+}
+
+.featured-product-advertisment{
+    object-fit: contain;
+}
+
+.pl-sub-container{
+    background-color: var(--lightgray-color);
+}
+
+.left-container{
+    background-color: var(--tertiary-color);
+    height:max-content;
+    float:left;
+}
+
+.right-container{
+    height:max-content;
+    float:right;
+}
+
+.left-container .categories-list li{
+   list-style: none;
+   font-size: 1rem;
+   margin:0.5rem;
+   padding: 0.5rem;
+   background-color: var(--white-color);
+   color: var(--primary-bg);
+}
+
+.left-container .categories-list .down-arrow{
+    float: right;
+    color:var(--darkgray-color)
+}
+
+.left-container .separator{
+    margin:5px 0;
+}
+
+.left-container .heading{
+    font-weight: 500;
+    text-align: center;
+    padding:5px;
+}
+
+.filters-container .float-container{
+    background-color: var(--white-color);
+}
+
+.left-container .filters-container .brands-container, .prdct-tag-container{
+    overflow: auto;
+    background-color: var(--white-color);
+    height: 20rem;
+    margin: 10px 0;
+}
+.brand-filter-container, .prdct-tag-filter-container{
+    background-color: var(--whitepeach-color);
+    display:flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    margin: 2px 0;
+    padding: 2px 0; 
+    align-items: center;
+}
+
+.brand-filter-container input,
+.prdct-tag-filter-container input
+{
+    margin-right: auto;
+    margin-left: 10px;
+}
+
+.brand-filter-container .lbl-brandname, 
+.prdct-tag-filter-container .lbl-prdct-tag{
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 25ch;
+}
+
+.lbl-count
+{
+    margin-left: auto;
+    margin-right: 10px;
+    color: var(--darkgreen-color);
+    font-weight: 600;
+    max-width: 4ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.price-filter,
+.ratings-filter
+{
+    margin: 5px;
+    text-align: left;
+}
+
+.price-filter .radio-btn{
+    padding:5px;
+}
+
+.price-filter .lbl-price{
+    width:80%;
+    padding:5px;
+    font-weight:500;
+}
+
+/* RIGHT CONATINER */
+.right-container-header{
+    width:100%;
+    margin: 0 15px;
+}
+
+.right-container-header .breadcrumb{
+    float: left;
+    margin: 10px auto 0 0;
+    color: var(--primary-bg);
+    font-weight: 500;
+}
+
+.right-container-header .clear-filter-btn{
+    margin-left: auto;
+    float: right;
+    margin-right: 15px;
+}
+
+.chips-container{
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-basis: content;
+    width:100%;
+    background-color: var(--tertiary-color);
+    height:70px;
+}
+
+.chip-word-flex{
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* background-color: salmon; */
+}
+
+.chip-word{
+    background-color: var(--secondary-color);
+    height: fit-content;
+    margin:0 5px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.chip-search{
+    background-color: var(--white-color);
+    height:2rem;
+    border: none;
+    border-radius:5px;
+    padding: 0 5px;
+}
+
+.chip-word .cross-btn{
+    outline: none;
+    border: 0;
+    margin-left: 5px;
+    font-weight: 900;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+
+.flex-container-row.filtered-prdcts{
+    background-color: var(--whitepeach-color);
+}

@@ -11,7 +11,7 @@ import RouteData from "./route/RouteData";
 function App() {
   return (
     <div className="App">
-      <LandingPage/>
+      {/* <LandingPage/> */}
       {/* <RouteData/> */}
       <BlitheRoute/>
       {/* <Login/> */}

@@ -57,18 +57,6 @@ const LandingPage = () =>{
                             title = {cVal.title}
                             description = {cVal.description}                           
                         />
-                    // <div key={cIndx} className="card-container card-shadow">
-                    //     <img src={cVal.img} className="card-img" alt="card-img"/>
-                    //     <div className="card-content-container">
-                    //         <p className="text-sm card-des">{cVal.title}</p>
-                    //         <p className='text-xs card-des'>{cVal.description}</p>
-                    //         <div className="flex-content">
-                    //             <a href="../Product_Listing/Product_Listing.html">
-                    //                 <button className="btn card-btn card-btn-text"><span className='text-lg'>Explore More..</span></button>
-                    //             </a>
-                    //         </div>
-                    //     </div>
-                    // </div>
                     )
                 :null}
 
