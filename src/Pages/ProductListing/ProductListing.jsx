@@ -146,17 +146,18 @@ const ProductListing = () =>{
                         <div className="col-12 flex-container-row filtered-prdcts">
                             {featuredProducts.length?
                                     featuredProducts.map(item=>
-                                        <ProductCard 
-                                            key = {item.id}
-                                            id = {item.id}
-                                            img ={item.img}
-                                            prdctBadge = {item.prdctBadge}
-                                            title = {item.title}
-                                            description = {item.description}
-                                            reviews = {item.reviews}
-                                            ratings = {item.ratings}
-                                            mrp = {item.mrp}
-                                            discount = {item.discount}
+                                        <ProductCard
+                                            product = {item} 
+                                            // key = {item.id}
+                                            // id = {item.id}
+                                            // img ={item.img}
+                                            // prdctBadge = {item.prdctBadge}
+                                            // title = {item.title}
+                                            // description = {item.description}
+                                            // reviews = {item.reviews}
+                                            // ratings = {item.ratings}
+                                            // mrp = {item.mrp}
+                                            // discount = {item.discount}
                                         />
                                     )
                             :null}   

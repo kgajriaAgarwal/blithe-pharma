@@ -72,16 +72,17 @@ const LandingPage = () =>{
                {featuredProducts.length?
                     featuredProducts.map(item=>
                         <ProductCard 
-                            key = {item.id}
-                            id = {item.id}
-                            img ={item.img}
-                            prdctBadge = {item.prdctBadge}
-                            title = {item.title}
-                            description = {item.description}
-                            reviews = {item.reviews}
-                            ratings = {item.ratings}
-                            mrp = {item.mrp}
-                            discount = {item.discount}
+                            product = {item} 
+                            // key = {item.id}
+                            // id = {item.id}
+                            // img ={item.img}
+                            // prdctBadge = {item.prdctBadge}
+                            // title = {item.title}
+                            // description = {item.description}
+                            // reviews = {item.reviews}
+                            // ratings = {item.ratings}
+                            // mrp = {item.mrp}
+                            // discount = {item.discount}
                         />
                     )
                :null}               

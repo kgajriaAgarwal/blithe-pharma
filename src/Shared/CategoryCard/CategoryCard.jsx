@@ -1,4 +1,5 @@
 import React from 'react';
+import './CategoryCard.css';
 
 const CategoryCard = (props) =>{
     return(
@@ -9,7 +10,7 @@ const CategoryCard = (props) =>{
                 <p className='text-xs card-des'>{props.description}</p>
                 <div className="flex-content">
                     <a href="../Product_Listing/Product_Listing.html">
-                        <button className="btn card-btn card-btn-text"><span className='text-lg'>Explore More..</span></button>
+                        <button className="btn card-btn card-btn-text explore-btn"><span className='text-lg'>Explore More..</span></button>
                     </a>
                 </div>
             </div>
