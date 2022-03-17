@@ -1,0 +1,8 @@
+.flex-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+.add-to-cart {
+    width: 6rem;
+}
