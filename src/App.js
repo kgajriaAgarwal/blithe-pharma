@@ -1,41 +1,21 @@
-import "./App.css";
+import './App.css';
+import LandingPage from './Pages/LandingPage/LandingPage';
 import logo from "./logo.png";
+import Login from "./Pages/Authentication/Login/Login";
+import SignUp from "./Pages/Authentication/SignUp/SignUp";
+import ForgotPassword from "./Pages/Authentication/ForgotPassword/ForgotPassword";
+import MockAPI from "./Helpers/MockMan";
+import BlitheRoute from "./route/BlitheRoute";
+import RouteData from "./route/RouteData";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} alt="mockBee logo" width="180" height="180" />
-        <h1 className="brand-title">
-          Welcome to <span>mockBee!</span>
-        </h1>
-        <p className="brand-description">
-          Get started by editing <code>src/App.js</code>
-        </p>
-        <div className="links">
-          <a
-            href="https://mockbee.netlify.app/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Explore mockBee
-          </a>
-          <a
-            href="https://mockbee.netlify.app/docs/api/introduction"
-            target="_blank"
-            rel="noreferrer"
-          >
-            API Documentation
-          </a>
-          <a
-            href="https://github.com/neogcamp/mockBee"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Contribute
-          </a>
-        </div>
-      </header>
+      {/* <LandingPage/> */}
+      {/* <RouteData/> */}
+      <BlitheRoute/>
+      {/* <Login/> */}
+      {/* <MockAPI/> */}
     </div>
   );
 }

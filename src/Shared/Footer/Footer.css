@@ -1,0 +1,21 @@
+
+.footer{
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.flex-container-row.footer p{
+    color: var(--black-color);
+    margin: 5px 0;
+    font-weight: 500;
+}
+
+.flex-container-row .footer ul{
+    list-style-type: none;
+}
+
+.footer-list li{
+    list-style-type: none;
+}
