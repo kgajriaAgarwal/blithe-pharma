@@ -6,6 +6,8 @@ const SignUp = React.lazy(() => import('../Pages/Authentication/SignUp/SignUp'))
 const ForgotPassword = React.lazy(() => import('../Pages/Authentication/ForgotPassword/ForgotPassword'));
 const LandingPage = React.lazy(() => import('../Pages/LandingPage/LandingPage'));
 const ProductListing = React.lazy(() => import('../Pages/ProductListing/ProductListing'));
+const Cart = React.lazy(() => import('../Pages/Cart_wishlist/Cart'));
+const Wishlist = React.lazy(() => import('../Pages/Cart_wishlist/Wishlist'));
 
 //Routing Data
 const RouteData = () =>{
@@ -13,17 +15,19 @@ const RouteData = () =>{
         <Routes>
             <Route exact path='/user' element={<PrivateRoute/>}>
                 {/* PRIVATE ROUTES HERE */}
-                {/* <Route exact path='/user' element={<PrivateRoute/>}/>
-                <Route exact path='/user' element={<PrivateRoute/>}/> */}
+                <Route exact path='/user/cart' element={<Cart/>}/>
+                <Route exact path='/user/wishlist' element={<Wishlist/>}/>
             </Route>
-            <Route exact path='/ProductListing' element={<ProductListing/>}/> 
-                    
+            <Route exact path='/products' element={<ProductListing/>}/>                     
             <Route exact path='/forgot-password' element={<ForgotPassword/>}/>
             <Route exact path='/signup' element={<SignUp/>}/>
             <Route exact path='/login' element={<Login/>}/>
-            <Route exact path='/home' element={<LandingPage/>}/>   
-            <Route exact path='/' element={<ProductListing/>}/>  
+            <Route exact path='/home' element={<LandingPage/>}/>
+            {/* <Route exact path='/cart' element={<Cart/>}/>    */}
+            <Route exact path='/' element={<LandingPage/>}/>  
     </Routes>
    );
 }
 export default RouteData;
+
+// /user/cart

@@ -69,6 +69,10 @@
     overflow: hidden;
 }
 
+.text-bold{
+    font-weight: 600;
+}
+
 /* For desktop: */
 .col_1 {width: 8.33%;}
 .col_2 {width: 16.66%;}

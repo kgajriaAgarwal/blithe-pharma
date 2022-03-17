@@ -521,5 +521,22 @@ export const ratingsFilter = {
     '1starplus':'⭐ plus',
 }
 
+export const offers = [
+    {
+        id: 1,
+        img:'https://res.cloudinary.com/du8msdgbj/image/upload/v1624040750/marketing/epusocq5sd7o2eebryii.png',
+        offerDesc:'Flat 25% off on your allopathy medicine order',
+        offerCode: 'CODE: BLITHE-ALL',
+        offerExpDate: '28 Feb 22'
+    },
+    {
+        id: 2,
+        img:'https://res.cloudinary.com/du8msdgbj/image/upload/v1610750110/marketing/w9a6lhxvcz8szhnmlzhy.png',
+        offerDesc:'Flat 25% off on your homeopathy medicine order',
+        offerCode: 'CODE: BLITHE-HOMEO',
+        
+    }
+]
+
 
 
