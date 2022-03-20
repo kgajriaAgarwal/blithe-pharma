@@ -83,7 +83,7 @@ const LandingPage = () =>{
             {/* <!-- featured Products --> */}
             <div className='featured-prdcts-header'>
                 <p className="heading-md heading-name">Featured Products</p>
-                <Link to="/products" className="btn-link-view-all">View all products</Link>
+                {/* <Link to="/products" className="btn-link-view-all">View all products</Link> */}
             </div>
             <div id="featured-prdcts" className="col-12 flex-container-row-center featured-prdcts">
                {featuredProducts.length?

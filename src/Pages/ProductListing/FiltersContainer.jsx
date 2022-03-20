@@ -19,12 +19,7 @@ const  FiltersContainer = (props) =>{
     const [prdctTags, setPrdctTags] = useState([]);
     const [ brands, setBrands] = useState([]);
   
-    useEffect(()=>{
-        if(Object.keys(props.categry).length && data?.categories?.length){
-            const indx = data?.categories?.findIndex(el=> el.title === props.categry.categoryName)
-            setCtgrySelected({indx:indx, ctgryId:props.categry.categoryId})
-        }
-    }, [props])
+    
 
     useEffect(() => {
         if (response !== null) {
@@ -33,8 +28,10 @@ const  FiltersContainer = (props) =>{
     }, [response]);
 
     useEffect(() => {
+        props.setClear(false);
         if(data?.categories?.length && ctgrySelected.ctgryId!==0){
             let fltrArr = data.categories.filter(el=> el.id == ctgrySelected.ctgryId)
+            console.log("fltrArr..", fltrArr);
             fltrArr[0].productTags.map((cVal,cIndx) =>{
                 setPrdctTags(prevState => [...prevState, { id:cIndx, prdctTagTile:cVal, isSelected:false} ] )
             })  
@@ -42,7 +39,19 @@ const  FiltersContainer = (props) =>{
                 setBrands(prevState => [...prevState, { id:cIndx, brandName:cVal, isSelected:false} ] )
             })       
         }            
-    }, [ctgrySelected]);
+    }, [data,ctgrySelected]);
+
+    useEffect(()=>{
+        console.log("yeh wla useEff trigg..");
+        props.setClear(false);
+        debugger
+        if(Object.keys(props.categry).length && data?.categories?.length){
+            const indx = data?.categories?.findIndex(el=> el.title === props.categry.categoryName)
+            console.log("indxx", indx);
+            setCtgrySelected({indx:indx, ctgryId:Number(props.categry.categoryId)})
+        }
+    }, [data, props.categry.categoryName])
+
 
     useEffect(() => {
         if (props.clear) {
@@ -50,7 +59,7 @@ const  FiltersContainer = (props) =>{
             setPrdctTags([]);
             setBrands([])
         }
-    }, [props]);
+    }, [props.clear]);
     
     const handleCategory = (ctgry, cIndx) =>{
         dispatch({ type: "CATEGORY" ,payload:ctgry.title })
@@ -136,23 +145,25 @@ const  FiltersContainer = (props) =>{
             <hr className="solid separator"/>
 
 
-            {/* <!-- FILTERS --> */}
-            <p className="text-lg heading">Brands</p>
-            <div className="col-12 filters-container">
-                {/* FUNCTIONALITY YET TO BE IMPLEMENTED */}
-                {/* <InputField 
-                    type='text'
-                    title='Brand Name'
-                    name='brandName'
-                    placeholder='Enter brand name..'
-                    err={false}
-                    value={brandSearchKey}
-                    onChange={(e)=> handlebrandSearch(e)}
-                /> */}
-
-                <div className="col-12 brands-container">                    
-                    {brands.length?
-                        brands.map((cVal,cIndx) =>{
+           
+                {brands.length?
+                <>
+                 {/* <!-- FILTERS --> */}
+                <p className="text-lg heading">Brands</p>
+                <div className="col-12 filters-container">
+                    {/* FUNCTIONALITY YET TO BE IMPLEMENTED */}
+                    {/* <InputField 
+                        type='text'
+                        title='Brand Name'
+                        name='brandName'
+                        placeholder='Enter brand name..'
+                        err={false}
+                        value={brandSearchKey}
+                        onChange={(e)=> handlebrandSearch(e)}
+                    /> */}
+                    <div className="col-12 brands-container">                    
+                   
+                        {brands.map((cVal,cIndx) =>{
                             return <div key={cIndx} className="col-12 prdct-tag-filter-container">
                                         <Input className="checkbox" type='checkbox' id={`checkbox-${cIndx}`}
                                             name={cVal.brandName}
@@ -163,45 +174,50 @@ const  FiltersContainer = (props) =>{
                                         <label className="text-xs lbl-prdct-tag">{cVal.brandName}</label>
                                         <label className="lbl-count">5</label>
                                     </div>
-                        })
-                    :null} 
+                        })}
+                    </div>
                 </div>
-            </div>
-
-            {/* <!-- SEPERATOR --> */}
-            <hr className="solid separator"/>
-
-            {/* <!-- PRODUCT TAGS --> */}
-            <p className="text-lg heading">Product tags</p>
-            <div className="col-12 filters-container"> 
-            {/* FUNCTIONALITY YET TO BE IMPLEMENTED                    */}
-                {/* <InputField 
-                    type='text'
-                    title='Product tag'
-                    name='productTag'
-                    placeholder='Enter product tag..'
-                    err={false}
-                    // value={}
-                    //onChange={(e)=> handlebrandSearch(e)}
-                /> */}
+            </>:''}
+            
                 
-                <div className="col-12 prdct-tag-container">
-                   {prdctTags.length?
-                        prdctTags.map((cVal,cIndx) =>{
-                            return <div key={cIndx} className="col-12 prdct-tag-filter-container">
-                                        <Input className="checkbox" type='checkbox' id={`checkbox-${cIndx}`}
-                                            name={cVal.prdctTagTile}
-                                            value={cVal.prdctTagTile}
-                                            onChange = {()=>handleProductsTagCheckBox(cVal.prdctTagTile)}
-                                            checked={cVal.isSelected}
-                                        />
-                                        <label className="text-xs lbl-prdct-tag">{cVal.prdctTagTile}</label>
-                                        <label className="lbl-count">5</label>
-                                    </div>
-                        })
-                    :null} 
-                </div>
-            </div>
+               
+            {prdctTags.length?
+                <>
+                    {/* <!-- SEPERATOR --> */}
+                    <hr className="solid separator"/>
+
+                    {/* <!-- PRODUCT TAGS --> */}
+                    <p className="text-lg heading">Product tags</p>
+                    <div className="col-12 filters-container"> 
+                    {/* FUNCTIONALITY YET TO BE IMPLEMENTED  */}
+                        {/* <InputField 
+                            type='text'
+                            title='Product tag'
+                            name='productTag'
+                            placeholder='Enter product tag..'
+                            err={false}
+                            // value={}
+                            //onChange={(e)=> handlebrandSearch(e)}
+                        /> */}
+                        <div className="col-12 prdct-tag-container">
+                        
+                        {prdctTags.map((cVal,cIndx) =>{
+                                return <div key={cIndx} className="col-12 prdct-tag-filter-container">
+                                    <Input className="checkbox" type='checkbox' id={`checkbox-${cIndx}`}
+                                        name={cVal.prdctTagTile}
+                                        value={cVal.prdctTagTile}
+                                        onChange = {()=>handleProductsTagCheckBox(cVal.prdctTagTile)}
+                                        checked={cVal.isSelected}
+                                    />
+                                    <label className="text-xs lbl-prdct-tag">{cVal.prdctTagTile}</label>
+                                    <label className="lbl-count">5</label>
+                                </div>
+                            })}
+                            </div>
+                    </div>
+                </>:''}
+                                                
+            
 
             {/* <!-- SEPERATOR --> */}
             <hr className="solid separator"/>

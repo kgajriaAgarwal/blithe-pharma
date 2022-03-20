@@ -12,7 +12,7 @@ import { useParams } from 'react-router-dom';
 
 const ProductListing = () =>{
 
-    let { categoryId, categoryName } = useParams();
+    const { categoryId, categoryName } = useParams();
     let { response, loading, error } = useAxios(getProducts);
     const [data, setData] = useState([]);
     const {state, dispatch} = useProductFilters();
@@ -25,6 +25,7 @@ const ProductListing = () =>{
             setData(response);
         }
     }, [response]);
+
 
     useEffect(() => {
         if (categoryName.length) {
@@ -81,7 +82,7 @@ const ProductListing = () =>{
                 
                 <div className="col-10 pl-sub-container">            
                     {/* <!-- LEFT CONTAINER -FEATURED CATEGORIES& FILTERS --> */}
-                    <FiltersContainer clear={clear}  categry={{categoryId : categoryId, categoryName : categoryName}}/>
+                    <FiltersContainer clear={clear}  setClear={setClear} categry={{categoryId : categoryId, categoryName : categoryName}}/>
 
                     {/* <!-- RIGHT CONATINER - PRODUCTS --> */}
                     <div className="col-9 right-container">
