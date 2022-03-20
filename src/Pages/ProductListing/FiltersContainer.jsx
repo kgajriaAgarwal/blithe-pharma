@@ -44,7 +44,6 @@ const  FiltersContainer = (props) =>{
     useEffect(()=>{
         console.log("yeh wla useEff trigg..");
         props.setClear(false);
-        debugger
         if(Object.keys(props.categry).length && data?.categories?.length){
             const indx = data?.categories?.findIndex(el=> el.title === props.categry.categoryName)
             console.log("indxx", indx);
