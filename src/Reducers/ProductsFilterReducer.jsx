@@ -14,7 +14,7 @@ export const ProductsFilterReducer = (state, action) =>{
         case 'CATEGORY':
             return {...state, category:action.payload}
 
-        case 'PRODUCTTAG':
+        case 'PRODUCT_TAG':
             return {...state, productTag:action.payload}
 
         case 'BRANDS':

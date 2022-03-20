@@ -107,7 +107,7 @@ const  FiltersContainer = (props) =>{
         prdctTagsArr[indx] = prdctTagTobeChanged;
         setPrdctTags([...prdctTagsArr])
         const selectedProductTags = prdctTagsArr.filter(el=> el.isSelected === true).reduce((acc, cVal) => [...acc , cVal.prdctTagTile],[])
-        dispatch({ type: "PRODUCTTAG" , payload:selectedProductTags})
+        dispatch({ type: "PRODUCT_TAG" , payload:selectedProductTags})
     } 
 
     const handleBrandsCheckBox = (brandName) => {

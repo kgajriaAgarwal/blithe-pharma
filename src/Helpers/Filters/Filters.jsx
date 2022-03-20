@@ -17,22 +17,22 @@ export const getSortedProducts =  (products, sortBy) =>{
 };
 
 export const getFilteredByRatings =  (products, ratings) =>{
-    if(ratings == ''){
+    if(ratings === ''){
         return products
     }
-    if(ratings == '5star'){       
+    if(ratings === '5star'){       
         return products.filter(prdct=> prdct.ratings === 5 )
     }
-    if(ratings == '4starplus'){
+    if(ratings === '4starplus'){
         return products.filter(prdct=> prdct.ratings >= 4 )
     }
-    if(ratings == '3starplus'){
+    if(ratings === '3starplus'){
         return products.filter(prdct=> prdct.ratings >= 3 )
     }
-    if(ratings == '2starplus'){
+    if(ratings === '2starplus'){
         return products.filter(prdct=> prdct.ratings >= 2 )
     }
-    if(ratings == '1starplus'){
+    if(ratings === '1starplus'){
         return products.filter(prdct=> prdct.ratings >= 1 )
     }
 };
