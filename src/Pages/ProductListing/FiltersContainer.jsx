@@ -21,7 +21,6 @@ const  FiltersContainer = (props) =>{
   
     useEffect(()=>{
         if(Object.keys(props.categry).length && data?.categories?.length){
-            debugger
             const indx = data?.categories?.findIndex(el=> el.title === props.categry.categoryName)
             setCtgrySelected({indx:indx, ctgryId:props.categry.categoryId})
         }

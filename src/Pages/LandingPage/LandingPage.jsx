@@ -24,7 +24,6 @@ const LandingPage = () =>{
         }
     }, [response]);
 
-    // debugger
     // console.log('data', data);
 
     return(
