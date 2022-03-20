@@ -68,6 +68,7 @@
    padding: 0.5rem;
    background-color: var(--white-color);
    color: var(--primary-bg);
+   cursor: pointer;
 }
 
 .left-container .categories-list .down-arrow{
@@ -212,4 +213,15 @@
 
 .flex-container-row.filtered-prdcts{
     background-color: var(--whitepeach-color);
+}
+
+.ctgry-sel{
+    background-color: blue;
+    list-style: none;
+    font-size: 1rem;
+   margin:0.5rem;
+   padding: 0.5rem;
+   background-color: var(--white-color);
+   color: var(--primary-bg);
+   cursor: pointer;
 }

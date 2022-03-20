@@ -184,6 +184,20 @@
     word-wrap: break-word;
 }
 
+.featured-prdcts-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.featured-prdcts-header a{    
+   text-decoration: underline;
+   color: var(--secondary-color);
+   text-decoration: underline;
+   font-weight: 600;
+}
+
 @media (max-width:768px){
     .step-item{
         height: 20vh;

@@ -4,19 +4,19 @@ import ratingIcon from '../../Assets/Icons/rating-icon.png'
 import './ProductCard.css'
 
 const ProductCard = (props) => {
-    console.log("props:", props);
+
     return(
         <>
             <div className="card-container card-shadow">
                 <img src={props?.product?.img ?? '-'}
                     className="card-img" alt="card-img"/>
-                    <Badge prdctBadge={props.product.prdctBadge}/>
+                    {props?.product?.prdctBadge?<Badge prdctBadge={props.product.prdctBadge}/>:null}
                 <div className="card-content-container">
                     <p className="text-sm card-des">{props?.product?.title ?? '-'}</p>
                     <p className='text-xs card-des'>{props?.product?.description ?? '-'}</p>
                     <div className="star-rating">
-                        <label className='text-xs rating'>{props?.product?.reviews ?? '-'}<img src={ratingIcon} alt="ratings"/></label>
-                        <p className='text-xs'>({props?.product?.ratings ?? '-'} ratings)</p>
+                        <label className='text-xs rating'>{props?.product?.ratings ?? '-'}<img src={ratingIcon} alt="ratings"/></label>
+                        <p className='text-xs'>({props?.product?.reviews ?? '-'} reviews)</p>
                     </div>
                     <div className="price-div">
                         <p className=" test-xxs mrp-lbl">MRP.</p>
@@ -33,7 +33,7 @@ const ProductCard = (props) => {
                             <button className="card-btn card-btn-text add-to-cart">Add to cart</button>
                         </div>
                     </div>
-                </div>
+                </div> 
             </div> 
         </>
     );

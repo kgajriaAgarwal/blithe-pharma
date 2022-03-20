@@ -15,7 +15,7 @@ const ForgotPassword = () =>{
     const handleSubmit = (e) =>{
         e.preventDefault();
         //commented right now for future perspective..
-        console.log('Data', Data);
+        // console.log('Data', Data);
     }
 
     return(

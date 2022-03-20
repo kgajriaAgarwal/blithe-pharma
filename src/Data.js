@@ -11,7 +11,11 @@ export const categories = [
                         "General Electric",
                         "3M Company",
                         "Siemens Healthineers",
-                        "Stryker Corporation"
+                        "Accu-Chek",
+                        "Omron",
+                        "Dr Morepen",
+                        "Dr Trust",
+                        "Hoffen"
                     ],
         productTags:[
             "BP monitors",
@@ -160,7 +164,9 @@ export const categories = [
                 "Sanofi",
                 "Acc check"
             ],
-        productTags:["Short-acting insulin",
+        productTags:[
+            "Glucometers",
+            "Short-acting insulin",
             "Rapid-acting insulins",
             "Intermediate-acting insulin",
             "Long-acting insulins",
@@ -232,7 +238,7 @@ export const categories = [
                     "Truebasics",
                     "1MG",    
             ],
-        productTags: ["Weight gain", "weight Loss"]
+        productTags: ["Weight gain", "weight Loss", "Supplements"]
     },
     {   img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNJH3TDSrSNaG9kAaH24CgbmUbjUejeWh_fw&usqp=CAU",
         title:"Elderly Care",

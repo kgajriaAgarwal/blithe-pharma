@@ -1,12 +1,72 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './ProductListing.css'
 import Header from '../../Shared/Header/Header';
 import Image from '../../Shared/Image/Image';
-import {categories,topCategories, featuredProducts, testimonials, steps, ratingsFilter} from '../../Data';
 import ProductCard from '../../Shared/ProductCard/ProductCard';
-import InputField from '../../Shared/Input/InputField';
+import useAxios from '../../Api/useAxios/useAxios';
+import { getProducts } from '../../Api/actions';
+import FiltersContainer from './FiltersContainer';
+import  { getSortedProducts, getFilteredByRatings , getFilteredByCategories, getFilteredByProductTags, getFilteredByBrands } from '../../Helpers/Filters/Filters';
+import { useProductFilters } from '../../Context/ProductContext';
+import { useParams } from 'react-router-dom';
 
 const ProductListing = () =>{
+
+    let { categoryId, categoryName } = useParams();
+    let { response, loading, error } = useAxios(getProducts);
+    const [data, setData] = useState([]);
+    const {state, dispatch} = useProductFilters();
+    const [clear , setClear] = useState(false);
+    const [ctgryName, setCtgryName ] = useState('');
+    let filterprdcts = [];
+
+    useEffect(() => {
+        if (response !== null) {
+            setData(response);
+        }
+    }, [response]);
+
+    useEffect(() => {
+        if (categoryName.length) {
+            dispatch({ type: "CATEGORY" ,payload:categoryName })
+        }
+    }, [categoryName]);
+
+    //FILTERPORDUCTS ACCORDING TO CATEGORY
+    const filteredProducts_categories = (data?.products?.length && state.category) ? getFilteredByCategories(
+        data?.products?.length ? data.products : [],
+        state.category)
+        :[];
+
+    //FILTERPORDUCTS ACCORDING TO BRANDS
+    const filteredProducts_brands = getFilteredByBrands(
+        filteredProducts_categories,
+        state.brands
+        );
+    
+    ////FILTERPORDUCTS ACCORDING TO product tags
+    const filteredProducts_productTags = getFilteredByProductTags(
+        filteredProducts_brands,
+        state.productTag
+    );
+
+    //SORT PRODUCTS ACC TO PRICE
+    const filteredProducts_sortedPrice = getSortedProducts(
+        filteredProducts_productTags && filteredProducts_productTags.length ?  filteredProducts_productTags : data?.products?.length ? data.products : [] ,
+        state.sortBy
+    );
+
+    //FILTER PORDUCTS ACCORDING TO RATINGS
+    filterprdcts = getFilteredByRatings(
+        filteredProducts_sortedPrice && filteredProducts_sortedPrice.length ?  filteredProducts_sortedPrice : data?.products?.length ? data.products : [],
+        state.ratings
+    );
+
+    const handleClear = () =>{
+        setClear(true)
+        dispatch({ type: "CLEAR" })
+    }
+
     return(
         <>
             <Header/>
@@ -21,148 +81,47 @@ const ProductListing = () =>{
                 
                 <div className="col-10 pl-sub-container">            
                     {/* <!-- LEFT CONTAINER -FEATURED CATEGORIES& FILTERS --> */}
-                    <div className="col-3 left-container">
-
-                        {/* <!-- CATEGORIES --> */}
-                        <p className="heading-md heading">Categories</p>
-                        <div className="col-12 categories-list">
-                            <ul>
-                                {categories.length?
-                                    categories.map((cVal,cIndx) =>
-                                        <li key={cIndx}>{cVal.title}</li>
-                                    )
-                                :null}
-                            </ul>
-                        </div>
-
-                        <p className="heading-md heading">Filters</p>
-                        {/* <!-- SEPERATOR --> */}
-                        <hr className="solid separator"/>
-                        
-
-                        {/* <!-- FILTERS --> */}
-                        <p className="text-lg heading">Brands</p>
-                        <div className="col-12 filters-container">
-                            <InputField 
-                                type='text'
-                                title='Brand Name'
-                                name='brandName'
-                                placeholder='Enter brand name..'
-                                // value={}
-                                //onChange={}
-                            />
-
-                            <div className="col-12 brands-container">
-                            {categories[1]?.brandfilters?.length?
-                                    categories[1].brandfilters.map((cVal,cIndx) =>
-                                        <div key={cIndx} className="col-12 brand-filter-container">
-                                            <input type="checkbox"/>
-                                            <label className="text-xs lbl-brandname">{cVal}</label>
-                                            <label className="lbl-count">5</label>
-                                        </div>
-                                    )
-                                :null}
-                            </div>
-                        </div>
-
-                        {/* <!-- SEPERATOR --> */}
-                        <hr className="solid separator"/>
-
-                        {/* <!-- PRODUCT TAGS --> */}
-                        <p className="text-lg heading">Product tags</p>
-                        <div className="col-12 filters-container">                    
-                            <InputField 
-                                type='text'
-                                title='Product tag'
-                                name='productTag'
-                                placeholder='Enter product tag..'
-                                // value={}
-                                //onChange={}
-                            />
-                            
-                            <div className="col-12 prdct-tag-container">
-                                    {categories[1]?.productTags?.length?
-                                        categories[1].productTags.map((cVal,cIndx) =>
-                                        <div key={cIndx} className="col-12 prdct-tag-filter-container">
-                                            <input type="checkbox"/>
-                                            <label className="text-xs lbl-prdct-tag">{cVal}</label>
-                                            <label className="lbl-count">5</label>
-                                        </div>
-                                        )
-                                    :null}
-                            </div>
-                        </div>
-
-                        {/* <!-- SEPERATOR --> */}
-                        <hr className="solid separator"/>
-
-                        {/* <!-- PRICE FILTER --> */}
-                        <p className="text-lg heading">Price</p>
-                        <div className="col-12 filters-container">
-                            <div className="price-filter">
-                                <input className="radio-btn" type="radio"/>
-                                <label className="lbl-price">Low To High</label>
-                            </div>
-                            <div className="price-filter">
-                                <input className="radio-btn" type="radio"/>
-                                <label className="lbl-price">High To Low</label>
-                            </div>
-                        </div>
-
-                        {/* <!-- SEPERATOR --> */}
-                        <hr className="solid separator"/>
-
-                        {/* <!-- RATINGS FILTER --> */}
-                        <p className="text-lg heading">Ratings</p>
-                        <div className="col-12 filters-container">
-                            {Object.keys(ratingsFilter).length?
-                                    Object.keys(ratingsFilter).map(key=>
-                                        <div className="ratings-filter">
-                                            <input className="radio-btn" type="radio"/>
-                                            <label className="lbl-price">{ratingsFilter[key]}</label>
-                                        </div>
-                                        )
-                                :null}   
-                        </div>
-                    </div>
+                    <FiltersContainer clear={clear}  categry={{categoryId : categoryId, categoryName : categoryName}}/>
 
                     {/* <!-- RIGHT CONATINER - PRODUCTS --> */}
                     <div className="col-9 right-container">
                         <div className='right-container-header'>
-                            <p className="text-sm breadcrumb">{`HomeOTC > CategoriesDiabetesDevicesBlood > Glucose > Monitors`}</p>
-                            <button className="btn btn-sm btn-primary clear-filter-btn">Clear all filters</button>
+                            <p className="text-sm breadcrumb">{`${state.category} ${state.productTag.length?`>${state.productTag}`:''} ${state.brands.length?`>${state.brands}`:''}`}</p>
+                            <button className="btn btn-sm btn-primary clear-filter-btn"
+                                // onClick={() => dispatch({ type: "CLEAR" })}
+                                onClick={handleClear}
+                                >Clear all filters</button>
                         </div>
                         {/* <!-- FILTER -CHIPS --> */}
-                        <div className="col-10 chips-container">
+                        {/* functionality to be implmented commenting for future perspective..*/}
+                        {/* <div className="col-10 chips-container">
                             <div className="chip-word-flex">
                                 <p className="chip-word">Accu-check<button className="cross-btn">X</button></p>
                                 <p className="chip-word">Rs 500<button className="cross-btn">X</button></p>
                                 <p className="chip-word">4 star rating plus<button className="cross-btn">X</button></p>
                             </div>
                             <input className="chip-search" placeholder="search here"></input>
-                        </div>
+                        </div> */}
 
                         {/* <!-- FILTERED products --> */}
                         <div className="col-12 flex-container-row filtered-prdcts">
-                            {featuredProducts.length?
-                                    featuredProducts.map(item=>
-                                        <ProductCard
-                                            product = {item} 
-                                            // key = {item.id}
-                                            // id = {item.id}
-                                            // img ={item.img}
-                                            // prdctBadge = {item.prdctBadge}
-                                            // title = {item.title}
-                                            // description = {item.description}
-                                            // reviews = {item.reviews}
-                                            // ratings = {item.ratings}
-                                            // mrp = {item.mrp}
-                                            // discount = {item.discount}
-                                        />
-                                    )
-                            :null}   
+                            {filterprdcts && filterprdcts.length ?
+                                        filterprdcts.map(item=>
+                                            <ProductCard
+                                                key={item.id}
+                                                product = {item} 
+                                            />
+                                        )
+                                :
+                                data?.products?.length?
+                                        data.products.map(item=>
+                                            <ProductCard
+                                                key={item.id}
+                                                product = {item} 
+                                            />
+                                        )
+                                :null}   
                         </div>
-
                     </div>
                 </div>
             </div>

@@ -34,7 +34,7 @@ const InputField = (props) => {
                   />
                 {handleIcon()}
              </div>
-             <div className="error-message">Username is a required field.</div>
+             {props.err?<div className="error-message">Username is a required field.</div>:null}
          </div> 
     );
 } 

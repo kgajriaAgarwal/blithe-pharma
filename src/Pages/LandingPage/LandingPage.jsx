@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './LandingPage.css';
 import Header from '../../Shared/Header/Header';
 import Corousel from '../../Shared/Corousel/Corousel';
@@ -8,10 +8,24 @@ import Footer from '../../Shared/Footer/Footer';
 import CategoryCard from '../../Shared/CategoryCard/CategoryCard';
 import {categories,topCategories, featuredProducts, testimonials, steps} from '../../Data';
 import blitheLogo from '../../Assets/Images/Blithe-logo.png';
+import axios from 'axios';
+import useAxios from '../../Api/useAxios/useAxios';
+import { getCategories } from '../../Api/actions';
+import { Link } from 'react-router-dom';
 
 const LandingPage = () =>{
 
-    console.log("testimonials", testimonials);
+    let { response, loading, error } = useAxios(getCategories);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        if (response !== null) {
+            setData(response);
+        }
+    }, [response]);
+
+    // debugger
+    // console.log('data', data);
 
     return(
         <>
@@ -50,9 +64,10 @@ const LandingPage = () =>{
             <p className="heading-md heading-name">Featured Categories</p>
             <div id="featured-prdcts" className="col-12 flex-container-row featured-categories">
 
-                {categories.length?
-                    categories.map((cVal,cIndx) =>
+                {data?.categories?.length?
+                    data.categories.map((cVal,cIndx) =>
                         <CategoryCard key={cIndx}
+                            id = {cVal.id}
                             img = {cVal.img}
                             title = {cVal.title}
                             description = {cVal.description}                           
@@ -67,22 +82,15 @@ const LandingPage = () =>{
             <Banner/>
 
             {/* <!-- featured Products --> */}
-            <p className="heading-md heading-name">Featured Products</p>
+            <div className='featured-prdcts-header'>
+                <p className="heading-md heading-name">Featured Products</p>
+                <Link to="/products" className="btn-link-view-all">View all products</Link>
+            </div>
             <div id="featured-prdcts" className="col-12 flex-container-row-center featured-prdcts">
                {featuredProducts.length?
                     featuredProducts.map(item=>
                         <ProductCard 
                             product = {item} 
-                            // key = {item.id}
-                            // id = {item.id}
-                            // img ={item.img}
-                            // prdctBadge = {item.prdctBadge}
-                            // title = {item.title}
-                            // description = {item.description}
-                            // reviews = {item.reviews}
-                            // ratings = {item.ratings}
-                            // mrp = {item.mrp}
-                            // discount = {item.discount}
                         />
                     )
                :null}               

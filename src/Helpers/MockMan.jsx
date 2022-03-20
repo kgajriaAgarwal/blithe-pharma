@@ -4,7 +4,7 @@ we encourage to have a dedicated route called `/mock-api` on your frontend app w
 
 import React from "react";
 import Mockman from "mockman-js";
-function MockAPI() {
+const MockAPI = () => {
   return (
     <div className="MockAPI">
       <Mockman />
