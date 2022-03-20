@@ -1,0 +1,47 @@
+@import url('../../css/Common.css');
+
+.card-main-horizontal{
+    width: 50rem;
+}
+
+.card-container-horizontal-img{
+    width:30%;
+}
+
+.left-container .card-main-horizontal .card-container-horizontal-img img{
+    padding:0 0 0 20px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.left-container .card-main-horizontal .card-img{
+    height: 10rem;
+    width:10rem;
+}
+
+.card-desc-horizontal{
+    align-self: flex-end;
+}
+
+.card-btn-container .qty-container{
+    display: flex;
+    gap:5px;
+}
+
+.card-btn-container .qty-container .qty-btn{
+    height: 30px;
+    width:30px;
+    font-weight: 700;
+    font-size: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--black-color);
+}
+
+.card-btn-container .qty-container span{
+    color: var(--primary-bg);
+    font-weight: 800;
+}
+
+.star-rating{
+    justify-content: flex-start;
+}
