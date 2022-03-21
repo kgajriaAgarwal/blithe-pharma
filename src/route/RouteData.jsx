@@ -15,11 +15,12 @@ const Wishlist = React.lazy(() => import('../Pages/Cart_wishlist/Wishlist'));
 const RouteData = () =>{
     return(
         <Routes>
-            <Route exact path='/user' element={<PrivateRoute/>}>
-                {/* PRIVATE ROUTES HERE */}
+            {/* <Route exact path='/user' element={<PrivateRoute/>}>                
                 <Route exact path='/user/cart' element={<Cart/>}/>
                 <Route exact path='/user/wishlist' element={<Wishlist/>}/>
-            </Route>
+            </Route> */}
+            <Route exact path='/user/cart' element={<Cart/>}/>
+            <Route exact path='/user/wishlist' element={<Wishlist/>}/>
             <Route exact path="/products/:categoryId/:categoryName"  element={<ProductListing/>}/>
             <Route exact path='/products' element={<ProductListing/>}/> 
             <Route exact path='/mockman' element={<MockAPI/>}/>         
@@ -34,7 +35,7 @@ const RouteData = () =>{
             <Route exact path='/home' element={<LandingPage/>}/>
             {/* <Route exact path='/cart' element={<Cart/>}/>    */}
             <Route exact path='/' element={<LandingPage/>}/>  
-    </Routes>
+        </Routes>
    );
 }
 export default RouteData;
