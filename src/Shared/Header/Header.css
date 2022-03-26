@@ -1,3 +1,7 @@
+/* .header-container{
+    position: fixed;
+    z-index: 2;
+} */
 
 .header-search{
     height: 2rem;
@@ -6,6 +10,23 @@
     padding: 10px;
     border-radius: 5px;
 }
+
+
+.header-icon-sub-container{
+    display: flex;
+    gap:7px;
+}
+
+
+.header-btn-link .icon-btn-img{
+    background-color: var(--whitepeach-color);
+    border-radius: 50%;
+}
+
+.header-btn-link .avatar-badge{
+    top: 1.25rem;
+}
+
 
 @media (max-width:768px){
     .header-search{

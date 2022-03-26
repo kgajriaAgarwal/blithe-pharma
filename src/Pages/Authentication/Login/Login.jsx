@@ -5,9 +5,13 @@ import Input from '../../../Shared/Input/Input';
 import blitheCollage from '../../../Assets/Images/Blithe-collage.jpg';
 import blitheLogo from '../../../Assets/Images/Blithe-logo.png';
 import InputField from '../../../Shared/Input/InputField';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
 
 const Login = () =>{
 
+    const navigate = useNavigate();
     const [showPassword , setShowPassword ] = useState(false);
     const [loginData, setLoginData] = useState(
         {   
@@ -20,10 +24,20 @@ const Login = () =>{
         setShowPassword(!showPassword)
     }
 
-    const handleLogin = (e) =>{
-        e.preventDefault();
+    const handleLogin = async (e) =>{
         //commented right now for future perspective..
-        // console.log('LoginData', loginData);
+        //console.log('LoginData', loginData);
+        try {
+            e.preventDefault();
+            const response = await axios.post("/api/auth/login",  loginData);
+            if (response.status === 200) {
+            console.log("responese", response);
+                localStorage.setItem("token", response.data.encodedToken);
+                navigate("/");
+          }
+        } catch (error) {
+          console.error(error);
+        }
     }
 
     return(

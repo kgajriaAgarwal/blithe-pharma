@@ -1,4 +1,5 @@
 @import url('../../css/Common.css');
+/* @import url('../../Shared/index.css'); */
 
 /* for dropdown on header */
 .dropdown {
@@ -56,9 +57,10 @@
     float:left;
 }
 
-.right-container{
+.right-container-product-listing{
     height:max-content;
     float:right;
+    /* width:73%; */
 }
 
 .left-container .categories-list li{

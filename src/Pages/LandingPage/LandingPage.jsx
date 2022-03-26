@@ -12,19 +12,35 @@ import axios from 'axios';
 import useAxios from '../../Api/useAxios/useAxios';
 import { getCategories } from '../../Api/actions';
 import { Link } from 'react-router-dom';
+import { useAlert } from '../../Context';
+import { v4 as uuid } from "uuid";
+
 
 const LandingPage = () =>{
 
-    let { response, loading, error } = useAxios(getCategories);
+    // let { response, loading, error } = useAxios(getCategories);
     const [data, setData] = useState([]);
+    const {alertContent , setAlertContent} = useAlert();
+
+    const getCategories = async () => {
+        try {
+          const response = await axios.get('/api/categories');
+          console.log(response);
+          if(response.status === 200){
+            setData(response.data);
+          }else{
+            setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Unexpected error.Please try again later."})
+          }
+        } catch (error) {
+          console.error(error);
+          setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Unexpected error.Please try again later."})
+        }
+      }
 
     useEffect(() => {
-        if (response !== null) {
-            setData(response);
-        }
-    }, [response]);
+        getCategories();
+    }, []);
 
-    // console.log('data', data);
 
     return(
         <>
@@ -73,8 +89,6 @@ const LandingPage = () =>{
                         />
                     )
                 :null}
-
-               
             </div>
 
             {/* <!-- Blithe-plus-banner --> */}
@@ -116,6 +130,8 @@ const LandingPage = () =>{
                     </div>
                 </div>
             </section> 
+
+            {/* <button onClick={()=> setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:'this is an ultimate error meassge'})}>onClick show alert....</button> */}
 
             <Footer/>
         </>

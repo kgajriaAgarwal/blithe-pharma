@@ -2,8 +2,15 @@ import React from 'react';
 import Badge from '../Badge/Badge';
 import ratingIcon from '../../Assets/Icons/rating-icon.png' 
 import './ProductCard.css'
+import { useCart } from '../../Context/CartContext';
+import axios from 'axios';
+import { useWishlist } from '../../Context/WishlistContext';
 
 const ProductCard = (props) => {
+
+    const { cartProducts, addToCart } = useCart();
+    const { wishlistProducts, addToWishlist } = useWishlist();
+    const auth = localStorage.getItem("token"); 
 
     return(
         <>
@@ -26,11 +33,17 @@ const ProductCard = (props) => {
                     <div className="flex-content">
                         <p className='sprice'><small>₹</small>{props?.product?.mrp && props?.product?.discount ? props.product.mrp-(props.product.mrp * (props.product.discount/100)): '-'}</p>
                         <div className="card-btn-container">
-                            <button className="card-btn">
+                            <button className="card-btn" onClick={() => {
+                                    addToWishlist(props?.product);
+                                  }}>
                                 <img src="https://img.icons8.com/material-outlined/24/000000/like--v1.png" className="icon-btn-img"
                                     alt="icon-btn-img" />
                             </button>
-                            <button className="card-btn card-btn-text add-to-cart">Add to cart</button>
+                            <button className="card-btn card-btn-text add-to-cart"
+                                onClick={() => {
+                                    addToCart(props?.product);
+                                  }}
+                            >Add to cart</button>
                         </div>
                     </div>
                 </div> 

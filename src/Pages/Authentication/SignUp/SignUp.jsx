@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import '../Css/Authentication.css';import Input from '../../../Shared/Input/Input';
+import '../Css/Authentication.css';
+import Input from '../../../Shared/Input/Input';
 import blitheCollage from '../../../Assets/Images/Blithe-collage.jpg';
 import blitheLogo from '../../../Assets/Images/Blithe-logo.png';
 import InputField from '../../../Shared/Input/InputField';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () =>{
 
+    const navigate = useNavigate();
     const [showPassword , setShowPassword ] = useState(false);
     const [showConfirmPassword , setShowConfirmPassword ] = useState(false);
+    
     const [sigUpData, setSignUpData] = useState(
         {   
             email:'',
@@ -30,12 +35,24 @@ const SignUp = () =>{
         setShowConfirmPassword(!showConfirmPassword)
     }
 
-    const handleSignUp = (e) =>{
-        e.preventDefault();
-        //commented right now for future perspective..
-        console.log('sigUpData', sigUpData);
-    }
+    const handleSubmit = async (e) => {
+        try {
+            e.preventDefault();
+            const response = await axios.post("/api/auth/signup",  sigUpData);
+            if (response.status === 201) {
+              console.log("responseeee", response);
+              localStorage.setItem("token", response.data.encodedToken);
+              navigate("/login");
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      };
+    
 
+    // const handleSignUp = async() =>{
+        
+    // }
 
     return(
         <>
@@ -93,7 +110,7 @@ const SignUp = () =>{
                                 value={sigUpData?.confirmPassword? sigUpData.confirmPassword : ''}
                                 onChange={(e)=>setSignUpData(prevData => {return  {...prevData, confirmPassword:e.target.value}})}
                             />
-                            <button className="btn btn-sm btn-primary" type="submit" onClick={handleSignUp}>Sign Up</button>
+                            <button className="btn btn-sm btn-primary" type="submit" onClick={handleSubmit}>Sign Up</button>
                             <div className="inputBx">
                                 {/* <p className="text-md">Do have an account?<a className="btn text-decoration-none btn-sm btn-link"
                                         href="../Login/Login.html">Sign In</a></p> */}

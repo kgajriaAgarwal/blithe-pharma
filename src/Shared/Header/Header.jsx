@@ -1,8 +1,18 @@
 import React from 'react';
 import cartIcon from '../../Assets/Icons/icons8-shopping-bag-60.png';
 import './Header.css';
+import { useCart } from '../../Context/CartContext';
+import { Link } from 'react-router-dom';
+import { useWishlist } from '../../Context/WishlistContext';
+
 
 const Header = () =>{
+
+    const {cartProducts} = useCart();
+    const encodedToken = localStorage.getItem("token");
+    const {wishlistProducts} = useWishlist();
+    // console.log("state, dispatch^^^^", state, dispatch);
+
     return(
         <>
         {/* <!-- header --> */}
@@ -14,12 +24,15 @@ const Header = () =>{
                 <div className="header-icon-container">
                     <input type="text" placeholder='Search here..' className='header-search'/>
                     <div className="header-icon-sub-container">
-                        <a href="../Cart_Wishlist/Wishlist.html">
-                            <button className="header-btn">
+                         <Link to="/user/wishlist" className="header-btn-link">
+                            {/* <button className="header-btn"> */}
+                            <div className="badge-container">
                                 <img src="https://img.icons8.com/material-outlined/24/000000/like--v1.png"
                                     className="icon-btn-img" alt="icon-btn-img" />
-                            </button>
-                        </a>
+                                <span className="avatar-badge avatar-badge-offline">{wishlistProducts.length}</span>
+                            </div>
+                            {/* </button> */}
+                        </Link>
                         <div className="badge-container dropdown">
                             <img className="avatar xs"
                                 src="https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"
@@ -35,13 +48,12 @@ const Header = () =>{
                     </div>
                     <div className="vl"></div>
                     <div className="header-cart-container badge-container">
-                        <a href="../Cart_Wishlist/Cart.html">
+                        <Link to ={encodedToken?"/user/cart":"/login"}>
                            <div className="badge-container">
-                            {/* <img className="sm" src="../Assets/Icons/icons8-shopping-bag-60.png" alt="icon" /> */}
                             <img className="sm" src={cartIcon} alt="icon"/>
-                            <span className="avatar-badge avatar-badge-offline">5</span>
+                            <span className="avatar-badge avatar-badge-online">{cartProducts.length}</span>
                             </div>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </header>

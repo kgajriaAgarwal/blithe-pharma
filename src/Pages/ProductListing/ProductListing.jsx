@@ -4,27 +4,48 @@ import Header from '../../Shared/Header/Header';
 import Image from '../../Shared/Image/Image';
 import ProductCard from '../../Shared/ProductCard/ProductCard';
 import useAxios from '../../Api/useAxios/useAxios';
-import { getProducts } from '../../Api/actions';
+// import { getProducts } from '../../Api/actions';
 import FiltersContainer from './FiltersContainer';
 import  { getSortedProducts, getFilteredByRatings , getFilteredByCategories, getFilteredByProductTags, getFilteredByBrands } from '../../Helpers/Filters/Filters';
 import { useProductFilters } from '../../Context/ProductContext';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { useWishlist } from '../../Context/WishlistContext';
+import { useAlert } from '../../Context';
 
 const ProductListing = () =>{
 
+    const {alertContent , setAlertContent} = useAlert();
     const { categoryId, categoryName } = useParams();
-    let { response, loading, error } = useAxios(getProducts);
+    // let { response, loading, error } = useAxios(getProducts);
     const [data, setData] = useState([]);
     const {state, dispatch} = useProductFilters();
     const [clear , setClear] = useState(false);
     const [ctgryName, setCtgryName ] = useState('');
     let filterprdcts = [];
 
-    useEffect(() => {
-        if (response !== null) {
-            setData(response);
+    // useEffect(() => {
+    //     if (response !== null) {
+    //         setData(response);
+    //     }
+    // }, [response]);
+
+    const getProducts = async () => {
+        try {
+          const response = await axios.get('/api/products');
+          console.log(response);
+          if(response.status === 200){
+            setData(response.data);
+          }
+        } catch (error) {
+          console.error(error);
         }
-    }, [response]);
+      }
+
+    useEffect(() => {
+        getProducts();
+    }, []);
+
 
 
     useEffect(() => {
@@ -85,7 +106,7 @@ const ProductListing = () =>{
                     <FiltersContainer clear={clear}  setClear={setClear} categry={{categoryId : categoryId, categoryName : categoryName}}/>
 
                     {/* <!-- RIGHT CONATINER - PRODUCTS --> */}
-                    <div className="col-9 right-container">
+                    <div className="col-9 right-container-product-listing">
                         <div className='right-container-header'>
                             <p className="text-sm breadcrumb">{`${state.category} ${state.productTag.length?`>${state.productTag}`:''} ${state.brands.length?`>${state.brands}`:''}`}</p>
                             <button className="btn btn-sm btn-primary clear-filter-btn"

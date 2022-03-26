@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import useAxios from '../../Api/useAxios/useAxios';
 import { ratingsFilter } from '../../Data';
 import { getCategories } from '../../Api/actions';
 import InputField from '../../Shared/Input/InputField';
 import Input from '../../Shared/Input/Input';
 import { useProductFilters } from '../../Context/ProductContext';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const  FiltersContainer = (props) =>{
     
     // let { categoryId } = useParams();
-    let { response, loading, error } = useAxios(getCategories);
+    // let { response, loading, error } = useAxios(getCategories);
     const [data, setData] = useState([]);
     const { state, dispatch} = useProductFilters();
     const { sortBy , categories , price , discount , inStock, ratings} = state;
@@ -19,13 +19,22 @@ const  FiltersContainer = (props) =>{
     const [prdctTags, setPrdctTags] = useState([]);
     const [ brands, setBrands] = useState([]);
   
-    
+    const getCategories = async () => {
+        try {
+          const response = await axios.get('/api/categories');
+          console.log(response);
+          if(response.status === 200){
+            setData(response.data);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
 
     useEffect(() => {
-        if (response !== null) {
-            setData(response);
-        }
-    }, [response]);
+        getCategories();
+    }, []);
+
 
     useEffect(() => {
         props.setClear(false);
@@ -42,7 +51,6 @@ const  FiltersContainer = (props) =>{
     }, [data,ctgrySelected]);
 
     useEffect(()=>{
-        console.log("yeh wla useEff trigg..");
         props.setClear(false);
         if(Object.keys(props.categry).length && data?.categories?.length){
             const indx = data?.categories?.findIndex(el=> el.title === props.categry.categoryName)

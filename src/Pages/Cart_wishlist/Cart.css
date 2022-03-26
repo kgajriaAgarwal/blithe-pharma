@@ -154,6 +154,11 @@
     gap: 1rem;
 }
 
+.cart-empty{
+    color: var(--darkred-color);
+    font-weight: 500;
+}
+
 /* .icon-btn-img{
     width: 3rem;
     height: 3rem;
