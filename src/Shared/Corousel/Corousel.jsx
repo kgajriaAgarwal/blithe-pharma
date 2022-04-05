@@ -4,7 +4,7 @@ import img2 from '../../Assets/Images/Blithe2.PNG'
 import img3 from '../../Assets/Images/Blithe-4.PNG'
 import './Corousel.css';
 
-const Corousel = () =>{
+export const Corousel = () =>{
 
     const mySlides = [img1, img2, img3];
     const [slideIndex, setSlideIndex] = useState(0);
@@ -33,4 +33,4 @@ const Corousel = () =>{
     );
 }
 
-export default Corousel;
+// export default Corousel;

@@ -2,7 +2,7 @@ export const getSortedProducts =  (products, sortBy) =>{
     if(sortBy === ''){
         return products
     }
-    // console.log("prod..products",products );
+    
     if(sortBy ==='LOW_TO_HIGH'){
         //SORT ACC TO DISCOUNTED PRICE
         return [...products].sort((item1, item2)=> 

@@ -1,26 +1,34 @@
 import React from 'react';
 import cartIcon from '../../Assets/Icons/icons8-shopping-bag-60.png';
 import './Header.css';
-import { useCart } from '../../Context/CartContext';
 import { Link } from 'react-router-dom';
-import { useWishlist } from '../../Context/WishlistContext';
+import { useCart, useLayout, useWishlist } from '../../Context';
+import { BiMenu , BiHomeAlt } from "react-icons/bi";
+import { getTotalProducts } from '../../Helpers/Utils';
 
 
-const Header = () =>{
+export const Header = () =>{
 
     const {cartProducts} = useCart();
     const encodedToken = localStorage.getItem("token");
     const {wishlistProducts} = useWishlist();
-    // console.log("state, dispatch^^^^", state, dispatch);
+    const {showSidebar , setShowSidebar} = useLayout();
 
     return(
         <>
         {/* <!-- header --> */}
         <div className ="header-container">
             <header className="header">
-                <h2 className="header-title">
-                    Blithe
-                </h2>
+                <div className='header-name-container'>
+                    <button 
+                        onClick = {()=>setShowSidebar(!showSidebar)}
+                    >
+                        <BiMenu color='#fff' size='2rem' id="btn"/>
+                    </button>
+                    <p className="header-title">
+                        Blithe
+                    </p>
+                </div>
                 <div className="header-icon-container">
                     <input type="text" placeholder='Search here..' className='header-search'/>
                     <div className="header-icon-sub-container">
@@ -29,21 +37,14 @@ const Header = () =>{
                             <div className="badge-container">
                                 <img src="https://img.icons8.com/material-outlined/24/000000/like--v1.png"
                                     className="icon-btn-img" alt="icon-btn-img" />
-                                <span className="avatar-badge avatar-badge-offline">{wishlistProducts.length}</span>
+                                <span className="avatar-badge avatar-badge-offline">{getTotalProducts(wishlistProducts, "wishlist")}</span>
                             </div>
                             {/* </button> */}
                         </Link>
-                        <div className="badge-container dropdown">
+                        <div className="badge-container">
                             <img className="avatar xs"
                                 src="https://image.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"
                                 alt="user"/>
-                            <div className="dropdown-content">
-                                <a href="../Authentication/Login/Login.html">Login</a>
-                                <a href="../Authentication/SignUp/SignUp.html">Sign Up</a>
-                                <a href="../UserProfile/UserProfile.html">User Profile</a>
-                                <a href="../Authentication/ForgotPassword/ForgotPassword.html">Forgot Password</a>
-                                <a href="../LandingPage/LandingPage.html">Log Out</a>
-                            </div>
                         </div>
                     </div>
                     <div className="vl"></div>
@@ -51,7 +52,7 @@ const Header = () =>{
                         <Link to ={encodedToken?"/user/cart":"/login"}>
                            <div className="badge-container">
                             <img className="sm" src={cartIcon} alt="icon"/>
-                            <span className="avatar-badge avatar-badge-online">{cartProducts.length}</span>
+                            <span className="avatar-badge avatar-badge-online">{getTotalProducts(cartProducts, "cart")}</span>
                             </div>
                         </Link>
                     </div>
@@ -62,4 +63,3 @@ const Header = () =>{
     );
 }
 
-export default Header;

@@ -45,3 +45,15 @@
 .star-rating{
     justify-content: flex-start;
 }
+
+.horizontal-card-flex-content{
+    display: flex;
+    justify-content: space-between;
+    grid-gap: 10px;
+    gap: 10px;
+    width: 100%;
+}
+
+.horizontal-card-flex-content .sprice{
+    font-size: 1.5rem;
+}

@@ -4,7 +4,6 @@ import { ProductsFilterReducer } from "../Reducers/ProductsFilterReducer";
 const ProductContext = createContext();
 const initialState = {
     sortBy: "",
-    // categories: { clothing: false, wallart: false },
     category: '',
     price: 5000,
     discount: "",

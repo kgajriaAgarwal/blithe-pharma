@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../../Shared/Header/Header';
-import './Cart.css';  
-import Image from '../../Shared/Image/Image';  
+import './Cart.css';    
 import { featuredProducts } from '../../Data';
-import ProductCard from '../../Shared/ProductCard/ProductCard';
-import HorizontalProductCard from '../../Shared/HorizontalProductCard/HorizontalProductCard';
-import { useCart } from '../../Context/CartContext';
 import axios from 'axios';
+import { HorizontalProductCard, ProductCard, Image , Header  } from '../../Shared';
+import { useCart } from '../../Context';
 
 
 const Cart = () => {
@@ -16,20 +13,25 @@ const Cart = () => {
     const {cartProducts, removeFromCart} = useCart();
     const [mrpTotal, setMrpTotal] = useState(0)
     const [discountTotal, setDiscountTotal] = useState(0); 
-    // console.log("**state.items**", state.items);
-    //const mrp_total = state.items.reduce((acc, cVal)=> acc+= (cVal.mrp * cVal.qty), 0)
-    //const discount_total = state.items.reduce((acc, cVal)=> acc+= ((cVal.mrp * (cVal.discount/100)) * cVal.qty) , 0)
-    // const mrp_total= 0;
-    // const discount_total= 0;
-
-    // console.log("state.items..", state.items);
 
     const getCartProducts = async () => {
         try {
           const response = await axios.get('/api/user/cart', { headers: { authorization: auth } });
-          console.log(response);
           if(response.status === 200){
-            setCartData(response.data.cart);
+            //REMOVE DUPLICATE ENTRIES
+            const uniqueIds = [];
+
+            const unique = response?.data?.cart.filter(element => {
+                const isDuplicate = uniqueIds.includes(element.id);
+
+                if (!isDuplicate) {
+                    uniqueIds.push(element.id);
+                    return true;
+                }
+            });        
+           
+            const fltData = unique.filter(item => item.qty > 0)
+            setCartData([...fltData])
           }
         } catch (error) {
           console.error(error);
@@ -41,21 +43,20 @@ const Cart = () => {
         setMrpTotal(cartData.reduce((acc, cVal)=> acc+= (cVal.mrp * cVal.qty), 0));
         setDiscountTotal(cartData.reduce((acc, cVal)=> acc+= ((cVal.mrp * (cVal.discount/100)) * cVal.qty) , 0))
     }, [cartData]);
-    
+
     return(
         <>
-            <Header/>
             
             <div className="col-12 cart-main-container">
                 <div className="col-10 cart-sub-container">
-                    <p className='heading-md align-left'>Your cart ({cartData.length} items)</p>
+                    <p className='heading-md align-left'>Your cart</p>
                     
                     {/* <!-- LEFT CONTAINER - PRODUCTS IN THE CART --> */}
-                    <div className="col-9 left-container">
+                    <div className="col-9 left-container-cart">
                         <Image src="https://www.netmeds.com/images/cms/aw_rbslider/slides/1643642689_Cart_Bannersip.jpg" alt="banner"/>
                         
                         { cartData && cartData.length ?
-                            cartData.map(item => <HorizontalProductCard  key ={item.id} item = {item}  module="cart"/>)
+                            cartData.map(item => <HorizontalProductCard  key ={item._id} item = {item}  module="cart"/>)
                         :<p className="cart-empty">Cart is Empty...</p>}
 
                         

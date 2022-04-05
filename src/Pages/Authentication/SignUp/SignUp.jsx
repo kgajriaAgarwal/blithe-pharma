@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import '../Css/Authentication.css';
-import Input from '../../../Shared/Input/Input';
 import blitheCollage from '../../../Assets/Images/Blithe-collage.jpg';
 import blitheLogo from '../../../Assets/Images/Blithe-logo.png';
-import InputField from '../../../Shared/Input/InputField';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { Input, InputField } from '../../../Shared'; 
 
 const SignUp = () =>{
 
@@ -40,9 +39,8 @@ const SignUp = () =>{
             e.preventDefault();
             const response = await axios.post("/api/auth/signup",  sigUpData);
             if (response.status === 201) {
-              console.log("responseeee", response);
               localStorage.setItem("token", response.data.encodedToken);
-              navigate("/login");
+              navigate("/");
           }
         } catch (error) {
           console.error(error);

@@ -1,12 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import './Cart.css'; 
-import Header from '../../Shared/Header/Header';
-import Image from '../../Shared/Image/Image';
-import HorizontalProductCard from '../../Shared/HorizontalProductCard/HorizontalProductCard';
+// import Header from '../../Shared/Header/Header';
+// import Image from '../../Shared/Image/Image';
+// import HorizontalProductCard from '../../Shared/HorizontalProductCard/HorizontalProductCard';
 import { featuredProducts , offers } from '../../Data';
-import ProductCard from '../../Shared/ProductCard/ProductCard';
-import { useWishlist } from '../../Context/WishlistContext';
+// import ProductCard from '../../Shared/ProductCard/ProductCard';
+import { useWishlist } from '../../Context';
 import axios from 'axios';
+import { Header, Image , HorizontalProductCard, ProductCard } from '../../Shared';
 
 const Wishlist = () =>{
 
@@ -19,13 +20,24 @@ const Wishlist = () =>{
     const getWishlistProducts = async () => {
         try {
             const response = await axios.get('/api/user/wishlist', { headers: { authorization: auth } });
-            console.log(response);
             if(response.status === 200){
                 setWishlistData(response.data.wishlist);
+                //REMOVE DUPLICATE ENTRIES
+                const uniqueIds = [];
+
+                const unique = response?.data?.wishlist?.filter(element => {
+                    const isDuplicate = uniqueIds.includes(element.id);
+
+                    if (!isDuplicate) {
+                        uniqueIds.push(element.id);
+                        return true;
+                    }
+                });                       
+                setWishlistData([...unique])
+                }
+            } catch (error) {
+                console.error(error);
             }
-        } catch (error) {
-            console.error(error);
-        }
         }
 
     useEffect(() => {
@@ -34,17 +46,14 @@ const Wishlist = () =>{
         // setDiscountTotal(cartData.reduce((acc, cVal)=> acc+= ((cVal.mrp * (cVal.discount/100)) * cVal.qty) , 0))
     }, [wishlistData]);
 
-    console.log("wishlistData", wishlistData);
-
     return(
         <>
-        <Header/>
         
         <div className="col-12 cart-main-container">
         <div className="col-10 cart-sub-container">
-            <p className='heading-md align-left' >Your wishlist(4 items)</p>
+            <p className='heading-md align-left' >Your wishlist</p>
             {/* <!-- LEFT CONTAINER - PRODUCTS IN THE CART --> */}
-           <div className="col-9 left-container">
+           <div className="col-9 left-container-cart">
                         <Image src="https://www.netmeds.com/images/cms/aw_rbslider/slides/1643642689_Cart_Bannersip.jpg" alt="banner"/>
                         
 

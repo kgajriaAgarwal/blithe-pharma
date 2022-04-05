@@ -2,6 +2,30 @@
     position: fixed;
     z-index: 2;
 } */
+.header-container{
+    position: fixed;
+    z-index: 98;
+}
+
+.header-name-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* align-content: center; */
+    /* gap: 10px; */
+    margin-left: 2rem;
+}
+
+.header-name-container p{
+    font-size: 1.5rem;
+}
+
+.header-name-container button{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
 
 .header-search{
     height: 2rem;

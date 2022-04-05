@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import '../Css/Authentication.css';
-import Input from '../../../Shared/Input/Input';
 import blitheCollage from '../../../Assets/Images/Blithe-collage.jpg';
 import blitheLogo from '../../../Assets/Images/Blithe-logo.png';
-import InputField from '../../../Shared/Input/InputField';
+import { Input, InputField } from '../../../Shared';
 
 const ForgotPassword = () =>{
 

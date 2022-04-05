@@ -1,7 +1,6 @@
 import React from "react";
-// import './Badge.css'
 
-const Badge = (props) =>{
+export  const Badge = (props) =>{
 
     const badgeColor = {
         "Popular": 'badge-popular',
@@ -14,4 +13,4 @@ const Badge = (props) =>{
     );
 }
 
-export default Badge;
+// export default Badge;

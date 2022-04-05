@@ -1,37 +1,5 @@
 @import url('../../css/Common.css');
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    min-width: 15rem;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    padding-top: 1rem;
-    background-color: var(--white-color);
-  }
-  
-  .dropdown-content a {
-    color: var(--black-color);
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    font-weight: 500;
-  }
-  
-.dropdown-content a:hover {background-color: var(--shadow-color);}
-  
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown-content:hover{
-    display: block;
-}
+@import url('../../Shared/index.css');
 
 .align-left{
     text-align: left;
@@ -48,7 +16,7 @@
     background-color: var(--white-color);
 }
 
-.left-container{
+.left-container-cart{
     background-color: var(--whitepeach-color);
     height:max-content;
     float:left;
@@ -58,21 +26,21 @@
     text-align: center;
 }
 
-.left-container .separator{
+.left-container-cart .separator{
     margin:5px 0;
 }
 
-.left-container .prscptn-not-required-text{
+.left-container-cart .prscptn-not-required-text{
     font-weight: 500;
     color: var(--darkgreen-color);
 }
 
-.left-container .prscptn-required-text{
+.left-container-cart .prscptn-required-text{
     font-weight: 500;
     color: var(--darkred-color);
 }
 
-.left-container .suggested-pdcts-conatiner{
+.left-container-cart .suggested-pdcts-conatiner{
     
     display: flex;
     flex-direction: row;

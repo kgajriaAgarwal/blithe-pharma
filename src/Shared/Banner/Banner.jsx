@@ -1,7 +1,7 @@
 import React from 'react';
 import './Banner.css';
 
-const Banner = () => {
+export const Banner = () => {
     return(
         <div className="Blithe-plus-banner">
             
@@ -16,4 +16,4 @@ const Banner = () => {
     );
 }
 
-export default Banner;
+// export default Banner;

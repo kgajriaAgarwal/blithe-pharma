@@ -1,5 +1,6 @@
 /* @import '../../Common.css'; */
 @import '../../../css/Common.css';
+@import url('../../../Shared/index.css');
 
 .auth{
     background-color: var(--lightgray-color);

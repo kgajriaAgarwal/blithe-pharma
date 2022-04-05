@@ -1,9 +1,10 @@
 import React from 'react';
-import Input from './Input';
+// import Input from './Input';
+import { Input } from './Input';
 import passwordShowIcon from '../../Assets/Icons/password-show.png';
 import passwordHideIcon from '../../Assets/Icons/password-hide.png';
 
-const InputField = (props) => {
+export const InputField = (props) => {
     // <!-- Input Field Error -->
     
     const handleIcon = () => {
@@ -39,4 +40,4 @@ const InputField = (props) => {
     );
 } 
 
-export default InputField;
+// export default InputField;

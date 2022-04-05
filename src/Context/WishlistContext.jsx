@@ -35,7 +35,7 @@ const WishlistProvider = ({children}) => {
       };
 
       const removeFromWislist = async (item) => {
-        console.log("item to be removed..:", item)
+        
         try {
           const response = await axios.delete(`/api/user/wishlist/${item._id}`, {
             headers: {
@@ -47,7 +47,7 @@ const WishlistProvider = ({children}) => {
             setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Product removed from wishlist."})
           }
         } catch (err) {
-          console.log(err);
+        
           setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Kindly do login.."})
         }
       };

@@ -1,7 +1,8 @@
-.flex-content {
+.vertical-card-flex-content {
     display: flex;
     justify-content: space-between;
     gap: 10px;
+    width: 100%;
 }
 .add-to-cart {
     width: 6rem;

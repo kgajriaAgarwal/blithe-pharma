@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './LandingPage.css';
-import Header from '../../Shared/Header/Header';
-import Corousel from '../../Shared/Corousel/Corousel';
-import Banner from '../../Shared/Banner/Banner';
-import ProductCard from '../../Shared/ProductCard/ProductCard';
-import Footer from '../../Shared/Footer/Footer';
-import CategoryCard from '../../Shared/CategoryCard/CategoryCard';
+// import Header from '../../Shared/Header/Header';
+// import Corousel from '../../Shared/Corousel/Corousel';
+// import Banner from '../../Shared/Banner/Banner';
+// import ProductCard from '../../Shared/ProductCard/ProductCard';
+// import Footer from '../../Shared/Footer/Footer';
+// import CategoryCard from '../../Shared/CategoryCard/CategoryCard';
 import {categories,topCategories, featuredProducts, testimonials, steps} from '../../Data';
 import blitheLogo from '../../Assets/Images/Blithe-logo.png';
 import axios from 'axios';
@@ -14,6 +14,8 @@ import { getCategories } from '../../Api/actions';
 import { Link } from 'react-router-dom';
 import { useAlert } from '../../Context';
 import { v4 as uuid } from "uuid";
+import { Footer, Header, Corousel, ProductCard , CategoryCard, Banner} from '../../Shared';
+
 
 
 const LandingPage = () =>{
@@ -25,7 +27,6 @@ const LandingPage = () =>{
     const getCategories = async () => {
         try {
           const response = await axios.get('/api/categories');
-          console.log(response);
           if(response.status === 200){
             setData(response.data);
           }else{
@@ -44,7 +45,6 @@ const LandingPage = () =>{
 
     return(
         <>
-            <Header/>
 
             {/* <!-- top categories --> */}
             <div className="col-12 category-container">
@@ -79,7 +79,7 @@ const LandingPage = () =>{
             <p className="heading-md heading-name">Featured Categories</p>
             <div id="featured-prdcts" className="col-12 flex-container-row featured-categories">
 
-                {data?.categories?.length?
+                { data?.categories && data?.categories?.length?
                     data.categories.map((cVal,cIndx) =>
                         <CategoryCard key={cIndx}
                             id = {cVal.id}
@@ -101,8 +101,9 @@ const LandingPage = () =>{
             </div>
             <div id="featured-prdcts" className="col-12 flex-container-row-center featured-prdcts">
                {featuredProducts.length?
-                    featuredProducts.map(item=>
+                    featuredProducts.map((item, indx)=>
                         <ProductCard 
+                            key = {indx}
                             product = {item} 
                         />
                     )

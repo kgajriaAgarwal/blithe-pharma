@@ -1,5 +1,4 @@
 import { createContext, useContext, useReducer, useState } from "react";
-import CartReducer from '../Reducers/CartReducer';
 import axios from "axios";
 import { useAlert } from "./AlertContext";
 import { v4 as uuid } from "uuid";
@@ -33,7 +32,7 @@ const CartProvider = ({ children }) => {
           setAlertContent({_id: uuid(), isShow:true, type:'SUCCESS', content:"Product Added to cart"})
         }
       } catch (err) {
-        console.log("err in add to cart:",err);
+       
         setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Kindly do login.."})
       }
     };
@@ -46,12 +45,12 @@ const CartProvider = ({ children }) => {
           },
         });
         if (response.status === 200) {
-          console.log("product removed..", response.data.cart);
+         
           setCartProducts(response.data.cart);
-          setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Product removed from Cart"})
+          setAlertContent({_id: uuid(), isShow:true, type:'SUCCESS', content:"Product removed from Cart"})
         }
       } catch (err) {
-        console.log(err);
+      
         setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Kindly do login.."})
       }
     };
@@ -72,12 +71,12 @@ const CartProvider = ({ children }) => {
           }
         );
         if (response.status === 200) {
-          console.log("increment/decrement qty:",response )
+         
           setCartProducts(response.data.cart);
           setAlertContent({_id: uuid(), isShow:true, type:'SUCCESS', content:"Product quantity updated in Cart"})
         }
       } catch (err) {
-        console.log(err);
+       
         setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Kindly do login.."})
       }
     };

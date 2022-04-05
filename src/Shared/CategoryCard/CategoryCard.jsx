@@ -3,7 +3,7 @@ import './CategoryCard.css';
 import { Link } from 'react-router-dom';
 import {removeSpaceFromStr} from '../../Helpers/Utils';
 
-const CategoryCard = (props) =>{
+export const CategoryCard = (props) =>{
 
     //const ctgryStr = removeSpaceFromStr(props.title);
 
@@ -13,7 +13,7 @@ const CategoryCard = (props) =>{
             <div className="card-content-container">
                 <p className="text-sm card-des">{props.title}</p>
                 <p className='text-xs card-des'>{props.description}</p>
-                <div className="flex-content">
+                <div className="flex-content-card">
                     {/* <a href="../Product_Listing/Product_Listing.html">
                         <button className="btn card-btn card-btn-text explore-btn"><span className='text-lg'>Explore More..</span></button>
                     </a> */}
@@ -26,4 +26,4 @@ const CategoryCard = (props) =>{
     );
 }
 
-export default CategoryCard;
+// export default CategoryCard;

@@ -1,16 +1,15 @@
 import React from 'react';
-import Image from '../Image/Image';
+// import Image from '../Image/Image';
+
 import './HorizontalProductCard.css';
 import ratingIcon from '../../Assets/Icons/rating-icon.png' 
 import { calc_sp } from '../../Helpers/Utils';
-import { useCart } from '../../Context/CartContext';
-import { useWishlist } from '../../Context/WishlistContext';
+import { useCart, useWishlist } from '../../Context';
+import { Image } from '../Image/Image';
 
-const HorizontalProductCard = ( props) => {
+export const HorizontalProductCard = ( props) => {
 
-    // console.log("Props..", props)
     const {item} = props;
-    console.log(item);
     const {cartProducts, addToCart, removeFromCart, changeCartQty} = useCart();
     const {addToWishlist , removeFromWislist} = useWishlist();
 
@@ -37,8 +36,8 @@ const HorizontalProductCard = ( props) => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex-content horizontal-card-flex-content">
-                        <div className="flex-content">
+                    <div className="horizontal-card-flex-content">
+                        {/* <div className="flex-content"> */}
                             <div className="price-div">
                                 <p className=" test-xxs mrp-lbl">MRP.</p>
                                 <span className="price-lbl price-wrong">₹{item.mrp}</span>
@@ -69,23 +68,24 @@ const HorizontalProductCard = ( props) => {
                                     <button className="qty-btn"
                                         onClick={() => {
                                             changeCartQty("decrement",item._id);
+                                            //changeCartQty("decrement",item.id);
                                           }}
                                     >-</button>
                                     <span className='text-sm'>{item.qty}</span>
                                     <button className="qty-btn"
                                         onClick={() => {
                                             changeCartQty("increment",item._id);
+                                           // changeCartQty("increment",item.id);
                                         }}
                                     >+</button>
                                 </div>:''}
 
                             </div>
-                        </div>                                
+                        {/* </div>                                 */}
                     </div>
-                </div>
+                </div> 
             </div>
         </div>
     );
 }
 
-export default HorizontalProductCard;

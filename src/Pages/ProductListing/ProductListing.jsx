@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import './ProductListing.css'
-import Header from '../../Shared/Header/Header';
-import Image from '../../Shared/Image/Image';
-import ProductCard from '../../Shared/ProductCard/ProductCard';
+// import Header from '../../Shared/Header/Header';
+// import Image from '../../Shared/Image/Image';
+// import ProductCard from '../../Shared/ProductCard/ProductCard';
 import useAxios from '../../Api/useAxios/useAxios';
 // import { getProducts } from '../../Api/actions';
 import FiltersContainer from './FiltersContainer';
@@ -10,8 +10,10 @@ import  { getSortedProducts, getFilteredByRatings , getFilteredByCategories, get
 import { useProductFilters } from '../../Context/ProductContext';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useWishlist } from '../../Context/WishlistContext';
 import { useAlert } from '../../Context';
+import { Image , ProductCard, Header} from '../../Shared';
+// import { Header } from '../../Shared';
+// import { Header } from '../../Shared';
 
 const ProductListing = () =>{
 
@@ -24,16 +26,9 @@ const ProductListing = () =>{
     const [ctgryName, setCtgryName ] = useState('');
     let filterprdcts = [];
 
-    // useEffect(() => {
-    //     if (response !== null) {
-    //         setData(response);
-    //     }
-    // }, [response]);
-
     const getProducts = async () => {
         try {
           const response = await axios.get('/api/products');
-          console.log(response);
           if(response.status === 200){
             setData(response.data);
           }
@@ -91,7 +86,6 @@ const ProductListing = () =>{
 
     return(
         <>
-            <Header/>
 
             <Image 
                 src="https://newassets.apollo247.com/pub/media/magestore/bannerslider/images/p/u/pulse-oximeter_offer_1460x340.jpg"

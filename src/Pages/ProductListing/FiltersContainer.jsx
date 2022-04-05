@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { ratingsFilter } from '../../Data';
 import { getCategories } from '../../Api/actions';
-import InputField from '../../Shared/Input/InputField';
-import Input from '../../Shared/Input/Input';
+// import InputField from '../../Shared/Input/InputField';
+// import Input from '../../Shared/Input/Input';
 import { useProductFilters } from '../../Context/ProductContext';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Input, InputField } from '../../Shared';
 
 const  FiltersContainer = (props) =>{
     
@@ -22,7 +23,6 @@ const  FiltersContainer = (props) =>{
     const getCategories = async () => {
         try {
           const response = await axios.get('/api/categories');
-          console.log(response);
           if(response.status === 200){
             setData(response.data);
           }
@@ -40,7 +40,6 @@ const  FiltersContainer = (props) =>{
         props.setClear(false);
         if(data?.categories?.length && ctgrySelected.ctgryId!==0){
             let fltrArr = data.categories.filter(el=> el.id == ctgrySelected.ctgryId)
-            console.log("fltrArr..", fltrArr);
             fltrArr[0].productTags.map((cVal,cIndx) =>{
                 setPrdctTags(prevState => [...prevState, { id:cIndx, prdctTagTile:cVal, isSelected:false} ] )
             })  
@@ -54,7 +53,6 @@ const  FiltersContainer = (props) =>{
         props.setClear(false);
         if(Object.keys(props.categry).length && data?.categories?.length){
             const indx = data?.categories?.findIndex(el=> el.title === props.categry.categoryName)
-            console.log("indxx", indx);
             setCtgrySelected({indx:indx, ctgryId:Number(props.categry.categoryId)})
         }
     }, [data, props.categry.categoryName])
