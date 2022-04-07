@@ -32,7 +32,7 @@ const Wishlist = () =>{
         try {
             const response = await axios.get('/api/user/wishlist', { headers: { authorization: auth } });
             if(response.status === 200){
-                setWishlistData(response.data.wishlist);
+
                 //REMOVE DUPLICATE ENTRIES
                 const uniqueIds = [];
   
@@ -44,7 +44,7 @@ const Wishlist = () =>{
                         return true;
                     }
                 });                       
-                setWishlistData([...unique])
+                    setWishlistData([...unique])
                 }
             } catch (error) {
                 console.error(error);
@@ -75,8 +75,8 @@ const Wishlist = () =>{
                         <hr className="solid separator"/>
                         <p className="text-lg prscptn-required-text">Items Requiring Prescription (2)</p> */}
                         
-                        { wishlistProducts && wishlistProducts.length ?
-                            wishlistProducts.map(item => <HorizontalProductCard  key ={item.id} item = {item} module="wishlist"/>)
+                        { wishlistData && wishlistData.length ?
+                            wishlistData.map(item => <HorizontalProductCard  key ={item.id} item = {item} module="wishlist"/>)
                         :<p className="cart-empty">Wishlist is Empty...</p>}
                         
                         {/* <!-- suggested products conatiner --> */}
