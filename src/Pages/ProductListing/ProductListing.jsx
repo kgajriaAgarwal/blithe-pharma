@@ -12,8 +12,6 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useAlert } from '../../Context';
 import { Image , ProductCard, Header} from '../../Shared';
-// import { Header } from '../../Shared';
-// import { Header } from '../../Shared';
 
 const ProductListing = () =>{
 
@@ -69,12 +67,15 @@ const ProductListing = () =>{
 
     //SORT PRODUCTS ACC TO PRICE
     const filteredProducts_sortedPrice = getSortedProducts(
-        filteredProducts_productTags && filteredProducts_productTags.length ?  filteredProducts_productTags : data?.products?.length ? data.products : [] ,
+        filteredProducts_productTags && filteredProducts_productTags.length ?  
+            filteredProducts_productTags 
+            : data?.products?.length ? data.products : [] ,
         state.sortBy
     );
 
     //FILTER PORDUCTS ACCORDING TO RATINGS
     filterprdcts = getFilteredByRatings(
+        
         filteredProducts_sortedPrice && filteredProducts_sortedPrice.length ?  filteredProducts_sortedPrice : data?.products?.length ? data.products : [],
         state.ratings
     );
@@ -95,7 +96,7 @@ const ProductListing = () =>{
 
             <div className="col-12 pl-main-container">
                 
-                <div className="col-10 pl-sub-container">            
+                <div className="col-11 pl-sub-container">            
                     {/* <!-- LEFT CONTAINER -FEATURED CATEGORIES& FILTERS --> */}
                     <FiltersContainer clear={clear}  setClear={setClear} categry={{categoryId : categoryId, categoryName : categoryName}}/>
 
@@ -121,22 +122,18 @@ const ProductListing = () =>{
 
                         {/* <!-- FILTERED products --> */}
                         <div className="col-12 flex-container-row filtered-prdcts">
-                            {filterprdcts && filterprdcts.length ?
+                            {
+                                filteredProducts_categories && filteredProducts_categories.length ?
+                                    filterprdcts && filterprdcts.length ?
                                         filterprdcts.map(item=>
                                             <ProductCard
                                                 key={item.id}
                                                 product = {item} 
                                             />
                                         )
-                                :
-                                data?.products?.length?
-                                        data.products.map(item=>
-                                            <ProductCard
-                                                key={item.id}
-                                                product = {item} 
-                                            />
-                                        )
-                                :null}   
+                                :<p className='text-lg empty'>No products available. Kindly select a category to view products !!</p> 
+                                :<p className='text-lg empty'>No products available. !!</p> 
+                            } 
                         </div>
                     </div>
                 </div>

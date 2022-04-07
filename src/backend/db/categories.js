@@ -1,30 +1,6 @@
 import { v4 as uuid } from "uuid";
 
-/**
- * Category Database can be added here.
- * You can add category of your wish with different attributes
- * */
 
-// export const categories = [
-//   {
-//     _id: uuid(),
-//     categoryName: "fiction",
-//     description:
-//       "literature in the form of prose, especially novels, that describes imaginary events and people",
-//   },
-//   {
-//     _id: uuid(),
-//     categoryName: "non-fiction",
-//     description:
-//       "Non-fiction is writing that gives information or describes real events, rather than telling a story.",
-//   },
-//   {
-//     _id: uuid(),
-//     categoryName: "horror",
-//     description:
-//       "Meant to cause discomfort and fear for both the character and readers, horror writers often make use of supernatural and paranormal elements in morbid stories that are sometimes a little too realistic.",
-//   },
-// ];
 
 export const categories = [
     {   
@@ -293,8 +269,11 @@ export const categories = [
   {   
       _id: uuid(),
       id:9,
-      img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNJH3TDSrSNaG9kAaH24CgbmUbjUejeWh_fw&usqp=CAU",
+      img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV2c8BMnEMuEKwhQtjdopnM88qMlm_BkNDrQ&usqp=CAU",
       title:"Elderly Care",
+      gif:"https://pro2-bar-s3-cdn-cf1.myportfolio.com/93bea8ef802a988ed8ab44889dc82b83/c4fb2bc4-9f30-4899-afee-d8ea5eeca43b_rw_1200.gif?h=725162a6e84eb9419ea4c08f456f04c2",
+      categoryStatus:"top",
+      categoryIcon:"https://healthicons.org/icons/svg/filled/conditions/back_pain.svg",
       description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       brandfilters:["Tenura","step Neuro","NRS HealthCare", "Elder ease", "Trionic"],
       productTags: ["Shower Chair with Backrest",
@@ -339,22 +318,93 @@ export const categories = [
           "Pet food"
       ]
   },
-  {   
-    _id: uuid(),
-    id:12,
-    img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSavKV4sOSdmA5_Qqt8k8wGBVeclUGSr0rFlw&usqp=CAU",
-    title:"Fitness & Supplements",
-    description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    brandfilters:["Canponus wet wipes pvt ltd","Paws India","Pet Vanity", "Liveath BioPharma"],
-    productTags:["PetHex Anti Bacterial and Anti Fungal Shampoo for Dogs",
-        "Petcare Notix Green Shampoo",
-        "Petcare Proviboost Syrup",
-        "Pet Joint Supplement for Dogs",
-        "Petcare Livoferol Pet Supplement",
-        "Petcare Seledruff Shampoo",
-        "Petcare Notix Scrub-Liquid Shampoo for Dogs",
-        "Pet food"
-    ]
-},
+   {   
+        _id: uuid(),
+        id:12,
+        img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSavKV4sOSdmA5_Qqt8k8wGBVeclUGSr0rFlw&usqp=CAU",
+        title:"Fitness & Supplements",
+        description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        brandfilters:["Canponus wet wipes pvt ltd","Paws India","Pet Vanity", "Liveath BioPharma"],
+        productTags:["PetHex Anti Bacterial and Anti Fungal Shampoo for Dogs",
+            "Petcare Notix Green Shampoo",
+            "Petcare Proviboost Syrup",
+            "Pet Joint Supplement for Dogs",
+            "Petcare Livoferol Pet Supplement",
+            "Petcare Seledruff Shampoo",
+            "Petcare Notix Scrub-Liquid Shampoo for Dogs",
+            "Pet food"
+        ]
+    },
+    {   
+        _id: uuid(),
+        id:11,
+        img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL7l8Nq5-mRzo-0uSkGpr2D1b7D3mWY8xdzQ&usqp=CAU",
+        title:"Obesity",
+        gif:"https://www.medylife.com/blog/wp-content/uploads/2017/10/Obesity-GIF.gif",
+        categoryStatus:"top",
+        categoryIcon:"https://healthicons.org/icons/svg/outline/conditions/overweight.svg",
+        description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        brandfilters:["Mega","Keto","VLCC"],
+        productTags:["Garcinia Cambogia Extract",
+            "Hydroxycut",
+            "Caffeine",
+          ]
+      },
+      {   
+        _id: uuid(),
+        id:12,
+        img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUD-4d0bUWkWC_dmvvez-LscgNs54X1Kuh1IQVIrcUcmMblxqath22X6j60lQy4XoODU4&usqp=CAU",
+        title:"Covid-19",
+        gif:"https://healthmatters.nyp.org/wp-content/uploads/2021/01/Vaccine-Facts-2_thumbnail-GIF.gif",
+        categoryStatus:"top",
+        categoryIcon:"https://img.icons8.com/external-flatart-icons-flat-flatarticons/50/000000/external-medical-mask-coronavirus-covid19-flatart-icons-flat-flatarticons.png",
+        description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        brandfilters:["CoviSelf","Seloi","3M company"],
+        productTags:["Thermometer",
+            "Face Mask",
+            "Diagnostic Test Kit",
+          ]
+      },
+      {   
+        _id: uuid(),
+        id:14,
+        img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvkJMn9twUy7V_4cxZWOsAKnVyhsL6OEpGAg&usqp=CAU",
+        title:"Woman",
+        gif:"https://www.countdown2030europe.org/storage/app/media/uploaded-files/GIF2.gif",
+        categoryStatus:"top",
+        categoryIcon:"https://img.icons8.com/external-photo3ideastudio-flat-photo3ideastudio/50/000000/external-medical-mask-covid19-prevention-photo3ideastudio-flat-photo3ideastudio.png",
+        description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        brandfilters:["kairali","Himalaya"],
+        productTags:["Health supplements"
+          ]
+      },
+      {   
+        _id: uuid(),
+        id:15,
+        img:"https://cdn.cdnparenting.com/articles/2018/04/1066815683-H.webp",
+        title:"NewBorn",
+        gif:"https://i.gifer.com/6yKa.gif",
+        categoryStatus:"top",
+        categoryIcon:"https://img.icons8.com/external-vitaliy-gorbachev-lineal-color-vitaly-gorbachev/50/000000/external-baby-baby-vitaliy-gorbachev-lineal-color-vitaly-gorbachev-2.png",
+        description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        brandfilters:["Huggies","Johnson's baby"],
+        productTags:["Diapers",
+            "oil",
+            "shampoo",
+          ]
+      },
+      {   
+        _id: uuid(),
+        id:16,
+        img:"https://2rdnmg1qbg403gumla1v9i2h-wpengine.netdna-ssl.com/wp-content/uploads/sites/3/2020/01/mildHeartAttack-866257238-770x553-650x428.jpg",
+        title:"Heart",
+        gif:"https://www.sgu.edu/blog/medical/wp-content/uploads/sites/2/2018/02/What-Is-Heart-Disease_-Cardiovascular-Health-Problems-Explained.gif",
+        categoryStatus:"top",
+        categoryIcon:"https://img.icons8.com/offices/50/000000/medical-heart.png",
+        description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        brandfilters:["1MG","Himalya"],
+        productTags:["Heart supplements"
+          ]
+      }
 ]
  

@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import axios from "axios";
 import { useAlert } from "./AlertContext";
 import { v4 as uuid } from "uuid";
@@ -15,7 +15,6 @@ const CartProvider = ({ children }) => {
   const [cartProducts, setCartProducts] = useState([]);
   const {alertContent , setAlertContent} = useAlert();
 
-    ///const [state, dispatch] = useReducer(CartReducer, itemsInCart);
     const addToCart = async (item) => {
       try {
         const response = await axios.post(
@@ -28,8 +27,9 @@ const CartProvider = ({ children }) => {
           }
         );
         if (response.status === 201) {
-          setCartProducts(response.data.cart);
+           setCartProducts(response.data.cart);
           setAlertContent({_id: uuid(), isShow:true, type:'SUCCESS', content:"Product Added to cart"})
+         
         }
       } catch (err) {
        

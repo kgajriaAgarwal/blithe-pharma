@@ -7,8 +7,6 @@ import {Alert , Header, Footer , Sidebar } from '../../Shared';
 
 const DashboardLayout = () =>{
 
-
-    // const {showSidebar , setShowSidebar} = useLayout();
     const {showSidebar , setShowSidebar} = useLayout();
     const {alertContent , setAlertContent} = useAlert();
 
@@ -27,9 +25,8 @@ const DashboardLayout = () =>{
             <div className={`dashboard-layout ${showSidebar?"dashboard-layout-shift-left":"dashboard-layout-unshift"}`}>
                 <DashboardRoute/>
                 <Alert/>
-                {/* {isModalHidden?'':<PlayListModal/>} */}
             </div>
-            <Footer/>
+            {/* <Footer/> */}
         </>
     );
 }

@@ -23,9 +23,8 @@ export const ProductsFilterReducer = (state, action) =>{
         case "CLEAR":
             return {
                 sortBy: "",
-                // categories: { clothing: false, wallart: false },
                 category: '',
-                price: 5000,
+                // price: 5000,
                 discount: "",
                 inStock:true,
                 ratings:'',

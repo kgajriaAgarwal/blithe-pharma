@@ -193,3 +193,8 @@
    color: var(--primary-bg);
    cursor: pointer;
 }
+
+.empty{
+    color: var(--darkred-color);
+}
+

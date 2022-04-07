@@ -46,7 +46,8 @@ export const products = [
     qty: 0,
     categoryName: "Fitness & Supplements",
     productTags: 'Supplements',
-    brandName: '1MG'
+    brandName: '1MG',
+    productStatus: "featured"
   },
   {
     _id: uuid(), 
@@ -62,7 +63,8 @@ export const products = [
     qty: 0,
     categoryName: "Fitness & Supplements",
     productTags: 'Supplements',
-    brandName: '1MG'
+    brandName: '1MG',
+    productStatus: "featured"
   },
   {
     _id: uuid(), 
@@ -78,7 +80,8 @@ export const products = [
     qty: 0,
     categoryName: "Fitness & Supplements",
     productTags: 'Supplements',
-    brandName: '1MG'
+    brandName: '1MG',
+    productStatus: "featured"
   },
   {
     _id: uuid(), 
@@ -94,7 +97,8 @@ export const products = [
     qty: 0,
     categoryName: "Fitness & Supplements",
     productTags: 'Supplements',
-    brandName: '1MG'
+    brandName: '1MG',
+    productStatus: "featured"
   },
   {
     _id: uuid(), 
@@ -110,7 +114,8 @@ export const products = [
     qty: 0,
     categoryName: "Fitness & Supplements",
     productTags: 'Supplements',
-    brandName: '1MG'
+    brandName: '1MG',
+    productStatus: "featured"
   },
   {
     _id: uuid(), 
@@ -126,7 +131,8 @@ export const products = [
     qty: 0,
     categoryName: "Fitness & Supplements",
     productTags: 'Supplements',
-    brandName: '1MG'
+    brandName: '1MG',
+    productStatus: "featured"
   },
   {
     _id: uuid(), 
@@ -142,7 +148,8 @@ export const products = [
     qty: 0,
     categoryName: "Fitness & Supplements",
     productTags: 'Supplements',
-    brandName: '1MG'
+    brandName: '1MG',
+    productStatus: "featured"
   },
   {
     _id: uuid(),
@@ -158,7 +165,8 @@ export const products = [
     qty: 0,
     categoryName: "Fitness & Supplements",
     productTags: 'Supplements',
-    brandName: '1MG'
+    brandName: '1MG',
+    productStatus: "featured"
   },
   {
     _id: uuid(),
@@ -175,7 +183,8 @@ export const products = [
     // categoryName: ["Fitness & Supplements", 'Diabetic Care'],
     categoryName: "Fitness & Supplements",
     productTags: 'Supplements',
-    brandName: '1MG'
+    brandName: '1MG',
+    productStatus: "featured"
   },
   {
     _id: uuid(),

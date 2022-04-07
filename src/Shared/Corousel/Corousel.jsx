@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import img1 from '../../Assets/Images/Blithe1.PNG'
-import img2 from '../../Assets/Images/Blithe2.PNG'
-import img3 from '../../Assets/Images/Blithe-4.PNG'
 import './Corousel.css';
 
 export const Corousel = () =>{
 
-    const mySlides = [img1, img2, img3];
+    const mySlides = ["https://fleetroot.com/blog/wp-content/uploads/2020/11/pharmacy_delivery_services.jpg", "https://thumbs.dreamstime.com/b/fast-pharmacy-delivery-concept-deliveryman-fast-pharmacy-delivery-concept-deliveryman-scooter-delivering-medication-182768717.jpg"];
     const [slideIndex, setSlideIndex] = useState(0);
 
      const handleChange = (order) => {

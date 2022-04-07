@@ -13,7 +13,6 @@ export const HorizontalProductCard = ( props) => {
     const {cartProducts, addToCart, removeFromCart, changeCartQty} = useCart();
     const {addToWishlist , removeFromWislist} = useWishlist();
 
-
     return(
         <div className="card-flex">
             <div className="card-main-horizontal card-shadow">

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './Cart.css';    
-import { featuredProducts } from '../../Data';
 import axios from 'axios';
 import { HorizontalProductCard, ProductCard, Image , Header  } from '../../Shared';
 import { useCart } from '../../Context';
@@ -13,6 +12,22 @@ const Cart = () => {
     const {cartProducts, removeFromCart} = useCart();
     const [mrpTotal, setMrpTotal] = useState(0)
     const [discountTotal, setDiscountTotal] = useState(0); 
+    const [ featured_products, setFeatured_products] = useState([]);   
+
+    const getProducts = async () => {
+        try {
+            const response = await axios.get('/api/products');
+            if(response.status === 200){
+                setFeatured_products( response.data.products.filter(product =>
+                    product?.productStatus? product.productStatus === 'featured':''
+                ))
+              }else{
+                setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Unexpected error.Please try again later."})
+            }
+        } catch (error) {
+            setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Unexpected error.Please try again later."})
+        }
+    }
 
     const getCartProducts = async () => {
         try {
@@ -20,10 +35,10 @@ const Cart = () => {
           if(response.status === 200){
             //REMOVE DUPLICATE ENTRIES
             const uniqueIds = [];
-
+    
             const unique = response?.data?.cart.filter(element => {
                 const isDuplicate = uniqueIds.includes(element.id);
-
+    
                 if (!isDuplicate) {
                     uniqueIds.push(element.id);
                     return true;
@@ -34,15 +49,20 @@ const Cart = () => {
             setCartData([...fltData])
           }
         } catch (error) {
-          console.error(error);
+          setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Unexpected error.Please try again later."})
         }
       }
+    
+
+    useEffect(() => {
+        getProducts();
+    }, []);
 
     useEffect(() => {
         getCartProducts();
-        setMrpTotal(cartData.reduce((acc, cVal)=> acc+= (cVal.mrp * cVal.qty), 0));
-        setDiscountTotal(cartData.reduce((acc, cVal)=> acc+= ((cVal.mrp * (cVal.discount/100)) * cVal.qty) , 0))
-    }, [cartData]);
+        setMrpTotal(cartProducts.reduce((acc, cVal)=> acc+= (cVal.mrp * cVal.qty), 0));
+        setDiscountTotal(cartProducts.reduce((acc, cVal)=> acc+= ((cVal.mrp * (cVal.discount/100)) * cVal.qty) , 0))
+    }, [cartProducts]);
 
     return(
         <>
@@ -69,8 +89,8 @@ const Cart = () => {
                         {/* <!-- suggested products conatiner --> */}
                         <p className="heading-md">{cartData.length<1?'Suggested products':'Customers who bought above items also bought..'}</p>
                         <div className="col-12 suggested-pdcts-conatiner">
-                        {featuredProducts.length?
-                            featuredProducts.map(item=>
+                        {featured_products.length?
+                            featured_products.map(item=>
                                 <ProductCard 
                                     key={item.id}
                                     product = {item} 

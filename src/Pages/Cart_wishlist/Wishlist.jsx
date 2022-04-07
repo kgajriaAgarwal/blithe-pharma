@@ -1,10 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './Cart.css'; 
-// import Header from '../../Shared/Header/Header';
-// import Image from '../../Shared/Image/Image';
-// import HorizontalProductCard from '../../Shared/HorizontalProductCard/HorizontalProductCard';
-import { featuredProducts , offers } from '../../Data';
-// import ProductCard from '../../Shared/ProductCard/ProductCard';
+import { offers } from '../../Data';
 import { useWishlist } from '../../Context';
 import axios from 'axios';
 import { Header, Image , HorizontalProductCard, ProductCard } from '../../Shared';
@@ -15,7 +11,22 @@ const Wishlist = () =>{
     const auth = localStorage.getItem("token"); 
     const {wishlistProducts,
         removeFromWislist} = useWishlist();
+    const [ featured_products, setFeatured_products] = useState([]);
 
+    const getProducts = async () => {
+        try {
+            const response = await axios.get('/api/products');
+            if(response.status === 200){
+                setFeatured_products( response.data.products.filter(product =>
+                    product?.productStatus? product.productStatus === 'featured':''
+                ))
+              }else{
+                setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Unexpected error.Please try again later."})
+            }
+        } catch (error) {
+            setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Unexpected error.Please try again later."})
+        }
+    }
 
     const getWishlistProducts = async () => {
         try {
@@ -24,10 +35,10 @@ const Wishlist = () =>{
                 setWishlistData(response.data.wishlist);
                 //REMOVE DUPLICATE ENTRIES
                 const uniqueIds = [];
-
+  
                 const unique = response?.data?.wishlist?.filter(element => {
                     const isDuplicate = uniqueIds.includes(element.id);
-
+  
                     if (!isDuplicate) {
                         uniqueIds.push(element.id);
                         return true;
@@ -41,10 +52,13 @@ const Wishlist = () =>{
         }
 
     useEffect(() => {
-        getWishlistProducts();
-        // setMrpTotal(cartData.reduce((acc, cVal)=> acc+= (cVal.mrp * cVal.qty), 0));
-        // setDiscountTotal(cartData.reduce((acc, cVal)=> acc+= ((cVal.mrp * (cVal.discount/100)) * cVal.qty) , 0))
-    }, [wishlistData]);
+        getProducts();
+    }, []);
+
+    useEffect(()=>
+        getWishlistProducts()
+    , [wishlistProducts])
+
 
     return(
         <>
@@ -61,15 +75,15 @@ const Wishlist = () =>{
                         <hr className="solid separator"/>
                         <p className="text-lg prscptn-required-text">Items Requiring Prescription (2)</p> */}
                         
-                        { wishlistData && wishlistData.length ?
-                            wishlistData.map(item => <HorizontalProductCard  key ={item.id} item = {item} module="wishlist"/>)
+                        { wishlistProducts && wishlistProducts.length ?
+                            wishlistProducts.map(item => <HorizontalProductCard  key ={item.id} item = {item} module="wishlist"/>)
                         :<p className="cart-empty">Wishlist is Empty...</p>}
                         
                         {/* <!-- suggested products conatiner --> */}
                         <p className="heading-md">Customers who bought above items also bought..</p>
                         <div className="col-12 suggested-pdcts-conatiner">
-                        {featuredProducts.length?
-                            featuredProducts.map(item=>
+                        {featured_products.length?
+                            featured_products.map(item=>
                                 <ProductCard 
                                     key={item.id}
                                     product = {item} 

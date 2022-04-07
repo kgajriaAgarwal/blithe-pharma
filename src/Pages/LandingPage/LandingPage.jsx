@@ -1,45 +1,55 @@
 import React, { useEffect, useState } from 'react';
 import './LandingPage.css';
-// import Header from '../../Shared/Header/Header';
-// import Corousel from '../../Shared/Corousel/Corousel';
-// import Banner from '../../Shared/Banner/Banner';
-// import ProductCard from '../../Shared/ProductCard/ProductCard';
-// import Footer from '../../Shared/Footer/Footer';
-// import CategoryCard from '../../Shared/CategoryCard/CategoryCard';
-import {categories,topCategories, featuredProducts, testimonials, steps} from '../../Data';
+import { testimonials, steps} from '../../Data';
 import blitheLogo from '../../Assets/Images/Blithe-logo.png';
-import axios from 'axios';
-import useAxios from '../../Api/useAxios/useAxios';
-import { getCategories } from '../../Api/actions';
-import { Link } from 'react-router-dom';
+import axios from 'axios';;
 import { useAlert } from '../../Context';
 import { v4 as uuid } from "uuid";
 import { Footer, Header, Corousel, ProductCard , CategoryCard, Banner} from '../../Shared';
-
-
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () =>{
 
-    // let { response, loading, error } = useAxios(getCategories);
     const [data, setData] = useState([]);
     const {alertContent , setAlertContent} = useAlert();
+    const [ top_categories, setTop_categories] = useState([]);
+    const [ featured_products, setFeatured_products] = useState([]);
+    const navigate = useNavigate();
 
     const getCategories = async () => {
         try {
           const response = await axios.get('/api/categories');
           if(response.status === 200){
             setData(response.data);
+            setTop_categories( response.data.categories.filter(category =>
+                category?.categoryStatus? category.categoryStatus === 'top':''
+            ))
           }else{
             setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Unexpected error.Please try again later."})
           }
         } catch (error) {
-          console.error(error);
           setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Unexpected error.Please try again later."})
         }
       }
 
+    const getProducts = async () => {
+        try {
+            const response = await axios.get('/api/products');
+            if(response.status === 200){
+                setFeatured_products( response.data.products.filter(product =>
+                    product?.productStatus? product.productStatus === 'featured':''
+                ))
+              }else{
+                setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Unexpected error.Please try again later."})
+            }
+        } catch (error) {
+            setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Unexpected error.Please try again later."})
+        }
+    }
+
     useEffect(() => {
         getCategories();
+        getProducts();
     }, []);
 
 
@@ -49,11 +59,11 @@ const LandingPage = () =>{
             {/* <!-- top categories --> */}
             <div className="col-12 category-container">
             {
-                topCategories.length?
-                    topCategories.map(category=>
-                        <button key={category.id} className="button category-item">
+                top_categories.length?
+                    top_categories.map(category=>
+                        <button key={category.id} className="button category-item" onClick={() => navigate(`/products/${category.id}/${category.title}`)}>
                         <img className="category sm"
-                            src={category.img}
+                            src={category.categoryIcon}
                             alt={category.title} />
                         <p className='text-sm'>{category.title}</p>
                     </button>
@@ -100,8 +110,8 @@ const LandingPage = () =>{
                 {/* <Link to="/products" className="btn-link-view-all">View all products</Link> */}
             </div>
             <div id="featured-prdcts" className="col-12 flex-container-row-center featured-prdcts">
-               {featuredProducts.length?
-                    featuredProducts.map((item, indx)=>
+               {featured_products.length?
+                    featured_products.map((item, indx)=>
                         <ProductCard 
                             key = {indx}
                             product = {item} 
@@ -131,8 +141,6 @@ const LandingPage = () =>{
                     </div>
                 </div>
             </section> 
-
-            {/* <button onClick={()=> setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:'this is an ultimate error meassge'})}>onClick show alert....</button> */}
 
             <Footer/>
         </>

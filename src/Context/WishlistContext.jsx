@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useState } from "react";
+import { createContext, useContext, useReducer, useState, useEffect } from "react";
 import axios from "axios";
 import { useAlert } from "./AlertContext";
 import { v4 as uuid } from "uuid";
@@ -13,6 +13,7 @@ const WishlistProvider = ({children}) => {
     const encodedToken = localStorage.getItem("token");
     const [wishlistProducts, setWishlistProducts] = useState([]);
     const {alertContent , setAlertContent} = useAlert();
+
 
     const addToWishlist = async (item) => {
         try {
@@ -44,7 +45,7 @@ const WishlistProvider = ({children}) => {
           });
           if (response.status === 200) {
             setWishlistProducts(response.data.wishlist);
-            setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Product removed from wishlist."})
+            setAlertContent({_id: uuid(), isShow:true, type:'SUCCESS', content:"Product removed from wishlist."})
           }
         } catch (err) {
         
