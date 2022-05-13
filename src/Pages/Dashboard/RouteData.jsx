@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
 import PrivateRoute from '../../route/PrivateRoute';
+import './DashboardLayout.css';
 
 const LandingPage = React.lazy(() => import('../LandingPage/LandingPage'));
 const Cart = React.lazy(() => import('../Cart_wishlist/Cart'));
@@ -16,7 +17,7 @@ function NoMatch() {
       <div>
         <h2>404.. This page is not found!</h2>
         <p>
-          <Link to="/">Go to the home page</Link>
+          <Link to="/" className='link-home'>Go to the home page</Link>
         </p>
       </div>
     );
@@ -34,6 +35,7 @@ const RouteData = () =>{
             <Route exact path='/products' element={<ProductListing/>}/> 
             <Route exact path='/home' element={<LandingPage/>}/>
             <Route exact path='/' element={<LandingPage/>}/>
+            <Route path="*" element={<NoMatch/>} />
         </Routes>
    );
 }

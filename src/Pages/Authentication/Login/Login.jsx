@@ -30,6 +30,7 @@ const Login = () =>{
             const response = await axios.post("/api/auth/login",  loginData);
             if (response.status === 200) {
                 localStorage.setItem("token", response.data.encodedToken);
+                localStorage.setItem("userData", JSON.stringify(response.data.foundUser));
                 navigate("/");
           }
         } catch (error) {

@@ -6,7 +6,7 @@ import './ProductListing.css'
 import useAxios from '../../Api/useAxios/useAxios';
 // import { getProducts } from '../../Api/actions';
 import FiltersContainer from './FiltersContainer';
-import  { getSortedProducts, getFilteredByRatings , getFilteredByCategories, getFilteredByProductTags, getFilteredByBrands } from '../../Helpers/Filters/Filters';
+import  { getSortedProducts, getFilteredByRatings , getFilteredByCategories, getFilteredByProductTags, getFilteredByBrands, getPricedProducts } from '../../Helpers/Filters/Filters';
 import { useProductFilters } from '../../Context/ProductContext';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -47,9 +47,14 @@ const ProductListing = () =>{
         }
     }, [categoryName]);
 
+    const pricedProducts = getPricedProducts(
+        data?.products?.length ? data.products : [],
+        state.price
+      );
+
     //FILTERPORDUCTS ACCORDING TO CATEGORY
     const filteredProducts_categories = (data?.products?.length && state.category) ? getFilteredByCategories(
-        data?.products?.length ? data.products : [],
+        pricedProducts.length ?  pricedProducts : data?.products?.length ? data.products : [],
         state.category)
         :[];
 

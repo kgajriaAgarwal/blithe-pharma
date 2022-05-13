@@ -19,3 +19,7 @@
     left: 15rem;
     width: calc(100% - 15rem);
 }
+
+.link-home{
+    color: var(--black-color);
+}

@@ -251,21 +251,7 @@ export const categories = [
           "Oven cleaners",
           "Air fresheners"]
   },
-  {   img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1jzzTKtx1E-gr2g4ci-qHkforVpf8kc-Ogw&usqp=CAU",
-      title:"Fitness Supplements",
-      description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      brandfilters:["Muscle Blaze",
-                  "Endura Mass",
-                  "Prontinex",
-                  "Procter & Gamble",
-                  "Reckitt Benckiser",
-                  "Muscle Mass",
-                  "Whey",
-                  "Truebasics",
-                  "1MG",    
-          ],
-      productTags: ["Weight gain", "weight Loss"]
-  },
+  
   {   
       _id: uuid(),
       id:9,
@@ -405,6 +391,25 @@ export const categories = [
         brandfilters:["1MG","Himalya"],
         productTags:["Heart supplements"
           ]
-      }
+      },
+      {   
+        _id: uuid(),
+        id:17,  
+        img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1jzzTKtx1E-gr2g4ci-qHkforVpf8kc-Ogw&usqp=CAU",
+     // title:"Fitness Supplements",//Fitness & Supplements
+      title:"Fitness & Supplements",
+      description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      brandfilters:["Muscle Blaze",
+                  "Endura Mass",
+                  "Prontinex",
+                  "Procter & Gamble",
+                  "Reckitt Benckiser",
+                  "Muscle Mass",
+                  "Whey",
+                  "Truebasics",
+                  "1MG",    
+          ],
+      productTags: ["Weight gain", "weight Loss"]
+  },
 ]
  

@@ -20,11 +20,14 @@ export const ProductsFilterReducer = (state, action) =>{
         case 'BRANDS':
             return {...state, brands:action.payload}
 
+        case "PRICE":
+            return {...state,price: action.payload};
+
         case "CLEAR":
             return {
                 sortBy: "",
                 category: '',
-                // price: 5000,
+                price: 5000,
                 discount: "",
                 inStock:true,
                 ratings:'',

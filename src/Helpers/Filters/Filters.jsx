@@ -76,3 +76,8 @@ export const getFilteredByBrands = (products, brands) =>{
     return fltrarry;
     }
 }
+
+export const getPricedProducts = (products, price) => {
+    const _price = Number(price);
+    return products.filter((item) => (item.mrp-(item.mrp * (item.discount/100))) <= _price);
+};
