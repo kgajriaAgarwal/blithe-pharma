@@ -1,0 +1,73 @@
+@import url('../../css/Common.css');
+@import url('../../Shared/index.css');
+
+.product-main-container{
+    background-color: var(--lightgray-color);
+    height:max-content;
+    display: flex;
+    justify-content: center;
+}
+
+.product-sub-container{
+    background-color: var(--white-color);
+}
+
+.left-container-product{
+    background-color: var(--whitepeach-color);
+    height:max-content;
+    float:left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+
+.right-container{
+    width:23%;
+    height:max-content;
+    float:right;
+    margin-left: 20px;
+}
+
+.product-right-container{
+    background-color: var(--whitepeach-color);
+    border: 2px solid var(--primary-bg);
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.images-container{
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.product-container{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.product-details{
+    display: flex;
+    flex-direction: column;
+    /* background-color: blueviolet; */
+    text-align: left;
+}
+
+.star-rating{
+    justify-content: flex-start;
+}
+
+.star-rating label{
+    padding: 2px 5px;
+}
+
+.price-container{
+    /* background-color: cadetblue; */
+    padding-top: 20px;
+}

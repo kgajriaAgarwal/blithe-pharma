@@ -6,10 +6,7 @@ const LandingPage = React.lazy(() => import('../LandingPage/LandingPage'));
 const Cart = React.lazy(() => import('../Cart_wishlist/Cart'));
 const Wishlist = React.lazy(() => import('../Cart_wishlist/Wishlist'));
 const ProductListing = React.lazy(() => import('../ProductListing/ProductListing'));
-// const VideoListingPage = React.lazy(() => import('../VideoListingPage/VideoListingPage'));
-// const LikedVideosPage = React.lazy(() => import('../LikedVideosPage/LikedVideosPage'));
-// const Video = React.lazy(() => import('../Video/Video'));
-// const PlayList = React.lazy(() => import('../PlayList/PlayList'));
+const ProductPage = React.lazy(() => import('../SingleProduct/SingleProduct'));
 
 function NoMatch() {
     return (
@@ -30,10 +27,11 @@ const RouteData = () =>{
                 <Route exact path='/user/cart' element={<Cart/>}/>
                 <Route exact path='/user/wishlist' element={<Wishlist/>}/>
             </Route>
+           
             <Route exact path="/products/:categoryId/:categoryName"  element={<ProductListing/>}/>
             <Route exact path='/products' element={<ProductListing/>}/> 
             <Route exact path='/home' element={<LandingPage/>}/>
-            <Route exact path='/' element={<LandingPage/>}/>
+            <Route exact path='/' element={<ProductPage/>}/>
         </Routes>
    );
 }
