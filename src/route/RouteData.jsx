@@ -11,6 +11,18 @@ import Dashboard from '../Pages/Dashboard';
 const Cart = React.lazy(() => import('../Pages/Cart_wishlist/Cart'));
 const Wishlist = React.lazy(() => import('../Pages/Cart_wishlist/Wishlist'));
 
+function NoMatch() {
+    return (
+      <div>
+        <h2>404.. This page is not found!</h2>
+        <p>
+          <Link to="/" className='link-home'>Go to the home page</Link>
+        </p>
+      </div>
+    );
+  }
+
+
 //Routing Data
 const RouteData = () =>{
     return(
@@ -19,6 +31,7 @@ const RouteData = () =>{
             <Route exact path='/login' element={<Login/>}/>
             <Route exact path='/mockman' element={<MockAPI/>}/>
             <Route path='/*' element={<Dashboard/>}/>
+            <Route path="*" element={<NoMatch/>} />
         </Routes>
    );
 }
